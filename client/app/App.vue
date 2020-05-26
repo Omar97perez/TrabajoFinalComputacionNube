@@ -26,16 +26,11 @@
               <button type="button" class="btn btn-b-n mostrado-movil" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-expanded="false" >
                 <div class="dropdown"  v-if="loggedIn">
                   <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="fa fa-user" aria-hidden="true"></span></a>
-                  <div class="dropdown-menu" aria-labelledby="login" >
-                    <a class="dropdown-item" ><router-link :to="{ name: 'nuevoAlgoritmo' }" class=" collapsed" data-toggle="collapse" data-target="#navbarDefault"
-                      aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-plus"></i> Nuevo Algoritmo</router-link></a>
+                  <div class="dropdown-menu" aria-labelledby="login"  style="background-color: #343a40!important;">
                     <a class="dropdown-item" ><router-link :to="{ name: 'ModUsuario' }" class=" collapsed" data-toggle="collapse" data-target="#navbarDefault"
                       aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-user"></i> Modificar Usuario</router-link></a>
                     <a class="dropdown-item" ><router-link :to="{ name: 'perfil' }" class=" collapsed" data-toggle="collapse" data-target="#navbarDefault"
                       aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-user"></i> Perfil</router-link></a>
-
-                    <a class="dropdown-item  collapsed" @click="DescargarPaginaWeb()"><i class="fa fa-user"></i> Descargar Ejemplo Cliente</a>
-
 
                     <a class="dropdown-item" ><router-link :to="{ name: 'Logout' }" class="collapsed" data-toggle="collapse" data-target="#navbarDefault"
                       aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation"> <i class="fas fa-sign-out-alt"></i> Cerrar Sesión</router-link></a>
@@ -93,11 +88,9 @@
                <button type="button" class="btn btn-b-n" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-expanded="false" >
                  <div class="dropdown"  v-if="loggedIn">
                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user" aria-hidden="true"></span></a>
-                   <div class="dropdown-menu" aria-labelledby="login" >
-                     <a class="dropdown-item" ><router-link :to="{ name: 'nuevoAlgoritmo' }" class="na-link"><i class="fa fa-plus"></i> Nuevo Algoritmo</router-link></a>
+                   <div class="dropdown-menu" aria-labelledby="login"  style="background-color: #343a40!important;">
                      <a class="dropdown-item" ><router-link :to="{ name: 'ModUsuario' }" class="na-link"><i class="fa fa-user"></i> Modificar Usuario</router-link></a>
                      <a class="dropdown-item" ><router-link :to="{ name: 'perfil' }" class="na-link"><i class="fa fa-user"></i> Perfil</router-link></a>
-                      <a class="dropdown-item" @click="DescargarPaginaWeb()"><i class="fa fa-user"></i> Descargar Ejemplo Cliente</a>
                      <a class="dropdown-item" ><router-link :to="{ name: 'Logout' }" class="na-link"> <i class="fas fa-sign-out-alt"></i> Cerrar Sesión</router-link></a>
                    </div>
                  </div>
@@ -271,13 +264,6 @@ export default {
       console.log(invId)
       this.$store.dispatch('addToPrev', invId);
     },
-    DescargarPaginaWeb() 
-    {
-      var link = document.createElement("a");
-      link.download = "servidorAPI.html";
-      link.href = "/Get/Example";
-      link.click();
-    }
   },
 };
 </script>

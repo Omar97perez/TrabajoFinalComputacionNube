@@ -48,15 +48,15 @@ Productos_clases<template>
                 <div class="card-box-c foo">
                   <div class="card-header-c d-flex">
                     <div class="card-box-ico">
-                      <span class="fas fa-cloud-upload-alt"></span>                    
+                      <span class="far fa-hand-point-up"></span>                    
                     </div>
                     <div class="card-title-c align-self-center">
-                      <h2 class="title-c">Sube</h2>
+                      <h2 class="title-c">Selecciona</h2>
                     </div>
                   </div>
                   <div class="card-body-c">
                     <p class="content-c">
-                      Sube tus algoritmos al servidor a través de unas especificaciones.
+                      Seleccione el modo y el algoritmo a ejecutar.
                     </p>
                   </div>
                 </div>
@@ -68,12 +68,12 @@ Productos_clases<template>
                       <span class="fa fa-clock-o"></span>
                     </div>
                     <div class="card-title-c align-self-center">
-                      <h2 class="title-c">Ejecutas</h2>
+                      <h2 class="title-c">Ejecuta</h2>
                     </div>
                   </div>
                   <div class="card-body-c">
                     <p class="content-c">
-                      Ejecuta tu algoritmo pidiendo los parámetros necesarios.
+                      Ejecuta tu algoritmo agregando los parámetros necesarios.
                     </p>
                   </div>
                 </div>

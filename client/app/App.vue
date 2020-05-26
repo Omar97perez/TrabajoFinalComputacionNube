@@ -123,7 +123,7 @@
                 </div>
                 <div class="w-body-a">
                   <p class="w-text-a color-a">
-                    GraphCloud nos permite subir algortimos, ejecutarlos y ver el resultado final.
+                    GraphCloud nos permite seleccionar, ejecutar y ver el resultado final.
                   </p>
                 </div>
                 <div class="w-footer-a">
@@ -164,6 +164,9 @@
                     </li>
                     <li class="item-list-a">
                       <i class="fa fa-angle-right"></i><router-link :to="{ name: 'ejecutarAlgoritmo' }" class="na-link">Algoritmos</router-link>
+                    </li>
+                    <li class="item-list-a">
+                      <i class="fa fa-angle-right"></i><router-link :to="{ name: 'Investigaciones' }" class="na-link">Investigaciones</router-link>
                     </li>
                     <li class="item-list-a">
                       <i class="fa fa-angle-right"></i><router-link :to="{ name: 'contacto' }" class="na-link">Contacto</router-link>

@@ -15,7 +15,7 @@
               </div>
               <div class="col-8">
                 <div class="w-header-a">
-                  <h3 class="w-title-a text-brand row"><img src="img/cloud-2044797_960_720.webp" class="mr-1"  alt="favicon"  width="15%"> Code<h class="color-b">Cloud</h></h3>
+                  <h3 class="w-title-a text-brand row"><img src="img/icon.png" class="mr-1"  alt="favicon"  width="15%"> Graph<h class="color-b">Cloud</h></h3>
                 </div>              
               </div>
             </div>
@@ -70,7 +70,7 @@
 
               <ul class="navbar-nav ocultar-en-escritorio">
                 <li class="nav-item contenedor1">
-                  <router-link :to="{ name: 'index' }" class="nav-link contenido1"><h2 class="text-brand"><img src="img/cloud-2044797_960_720.webp"  alt="favicon"  width="10%"> Code<span class="color-b">Cloud</span></h2></router-link>
+                  <router-link :to="{ name: 'index' }" class="nav-link contenido1"><h2 class="text-brand"><img src="img/icon.png"  alt="favicon"  width="10%"> Graph<span class="color-b">Cloud</span></h2></router-link>
                 </li>
                 <li class="nav-item contenedor1">
                   <router-link :to="{ name: 'ejecutarAlgoritmo' }" class="nav-link contenido1"><a class="nav-link">Algoritmos</a></router-link>
@@ -112,17 +112,17 @@
             <div class="col-sm-12 col-md-4">
               <div class="widget-a">
                 <div class="w-header-a">
-                  <h3 class="w-title-a text-brand"><img src="img/cloud-2044797_960_720.webp"  alt="favicon"  width="15%"> Code<a class="color-b">Cloud</a></h3>
+                  <h3 class="w-title-a text-brand"><img src="img/icon.png"  alt="favicon"  width="15%"> Graph<a class="color-b">Cloud</a></h3>
                 </div>
                 <div class="w-body-a">
                   <p class="w-text-a color-a">
-                    CodeCloud nos permite subir algortimos, ejecutarlos y ver el resultado final.
+                    GraphCloud nos permite subir algortimos, ejecutarlos y ver el resultado final.
                   </p>
                 </div>
                 <div class="w-footer-a">
                   <ul class="list-unstyled">
                     <li class="color-text-a">
-                      <span class="color-a">Email:</span> codecloud@gmail.com</li>
+                      <span class="color-a">Email:</span> Graphcloud@gmail.com</li>
                     <li class="color-text-a">
                       <span class="color-a">Teléfono:</span> 999 999 999</li>
                   </ul>

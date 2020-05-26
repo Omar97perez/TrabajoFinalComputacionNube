@@ -7,7 +7,9 @@
     "purifycss": "purifycss Client/public/css/style.css app/src/app/components/*.vue --min --out app/src/public/css/final.css --info",
     "client": "cd client && npm run start",
     "server": "nodemon server/index.js",
-    "webpack": "cd client && npm run webpack"
+    "webpack": "cd client && npm run webpack",
+    "dependencies:client": "cd client && npm i",
+    "dependencies:server": "cd server && npm i"
   },
   "keywords": [],
   "author": "",

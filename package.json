@@ -1,0 +1,18 @@
+{
+  "name": "graphiccloud",
+  "version": "1.0.0",
+  "description": "APágina web para ayuda al estudiante",
+  "main": "index.js",
+  "scripts": {
+    "purifycss": "purifycss Client/public/css/style.css app/src/app/components/*.vue --min --out app/src/public/css/final.css --info",
+    "client": "cd client && npm run start",
+    "server": "nodemon server/index.js",
+    "webpack": "cd client && npm run webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+  }
+}

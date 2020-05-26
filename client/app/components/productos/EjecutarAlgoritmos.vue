@@ -17,7 +17,9 @@
               <h5 class="card-title">Scikit Learn</h5>
               <p class="card-text">Use la librería de Scikit Learn en la nube.</p>
               <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
-                <button class="btn btn-dark">Acceder</button>
+                  <router-link :to="{ name: 'ScikitLearn' }" >
+                    <button class="btn btn-dark">Acceder</button>
+                  </router-link>
               </div>
             </div>
           </div>
@@ -27,7 +29,9 @@
               <h5 class="card-title">OpenMP</h5>
               <p class="card-text">Use la librería de Scikit Learn hybto con OpenMP en la nube.</p>
               <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
-                <button class="btn btn-dark">Acceder</button>
+                  <router-link :to="{ name: 'OpenMP' }" >
+                    <button class="btn btn-dark">Acceder</button>
+                  </router-link>
               </div>
             </div>
           </div>
@@ -37,7 +41,9 @@
               <h5 class="card-title">Spark</h5>
               <p class="card-text">Use Spark estadísctico en la nube.</p>
               <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
-                <button class="btn btn-dark">Acceder</button>
+                  <router-link :to="{ name: 'Spark' }" >
+                    <button class="btn btn-dark">Acceder</button>
+                  </router-link>
               </div>
             </div>
           </div>

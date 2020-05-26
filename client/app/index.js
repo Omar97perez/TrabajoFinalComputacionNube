@@ -21,6 +21,10 @@ import Logout from './components/usuario/Logout.vue';
 import Registro from './components/usuario/Registro.vue';
 import ModUsuario from './components/usuario/ModUsuario.vue';
 import Investigaciones from './components/productos/Investigaciones.vue';
+import ScikitLearn from './components/productos/ScikitLearn.vue';
+import OpenMP from './components/productos/OpenMP.vue';
+import Spark from './components/productos/Spark.vue';
+import InvestigacionFutbol from './components/productos/InvestigacionFutbol.vue';
 
 
 const routes = [
@@ -96,6 +100,38 @@ const routes = [
   name: 'Investigaciones',
   path: '/Investigaciones',
   component: Investigaciones,
+  meta: {
+    isPublic: true
+  }
+},
+{
+  name: 'ScikitLearn',
+  path: '/Ejecutar/Algoritmos/ScikitLearn',
+  component: ScikitLearn,
+  meta: {
+    isPublic: true
+  }
+},
+{
+  name: 'OpenMP',
+  path: '/Ejecutar/Algoritmos/OpenMP',
+  component: OpenMP,
+  meta: {
+    isPublic: true
+  }
+},
+{
+  name: 'Spark',
+  path: '/Ejecutar/Algoritmos/Spark',
+  component: Spark,
+  meta: {
+    isPublic: true
+  }
+},
+{
+  name: 'InvestigacionFutbol',
+  path: '/Investigacion/Futbol',
+  component: InvestigacionFutbol,
   meta: {
     isPublic: true
   }

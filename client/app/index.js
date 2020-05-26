@@ -14,7 +14,6 @@ import Index from './components/index.vue';
 import EjecutarAlgoritmo from './components/productos/EjecutarAlgoritmos.vue'
 import Contacto from './components/contacto.vue'
 import Perfil from './components/usuario/perfil.vue'
-import NuevoAlgoritmo from './components/productos/NuevoAlgoritmo.vue'
 import store from './js/store';
 import Login from './components/usuario/Login.vue';
 import Logout from './components/usuario/Logout.vue';
@@ -56,14 +55,6 @@ const routes = [
   path: '/Perfil',
   name: 'perfil',
   component: Perfil,
-  meta: {
-    isPublic: true
-  }
-},
-{
-  path: '/Nuevo/Algoritmo',
-  name: 'nuevoAlgoritmo',
-  component: NuevoAlgoritmo,
   meta: {
     isPublic: true
   }

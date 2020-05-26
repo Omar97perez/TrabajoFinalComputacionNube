@@ -20,6 +20,8 @@ import Login from './components/usuario/Login.vue';
 import Logout from './components/usuario/Logout.vue';
 import Registro from './components/usuario/Registro.vue';
 import ModUsuario from './components/usuario/ModUsuario.vue';
+import Investigaciones from './components/productos/Investigaciones.vue';
+
 
 const routes = [
   {
@@ -89,6 +91,14 @@ const routes = [
   name: 'ModUsuario',
   path: '/Usuario/ModUsuario',
   component: ModUsuario,
+},
+{
+  name: 'Investigaciones',
+  path: '/Investigaciones',
+  component: Investigaciones,
+  meta: {
+    isPublic: true
+  }
 },
 ];
 

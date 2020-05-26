@@ -54,7 +54,11 @@
                 </li>
                 <li class="nav-item">
                   <router-link :to="{ name: 'ejecutarAlgoritmo' }" class="nav-link navbar-toggler collapsed" data-toggle="collapse" data-target="#navbarDefault"
-                    aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation"><a class="nav-link">Algoritmos</a></router-link>
+                    aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation"><a class="nav-link">Ejecutar Algoritmos</a></router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link :to="{ name: 'Investigaciones' }" class="nav-link navbar-toggler collapsed" data-toggle="collapse" data-target="#navbarDefault"
+                    aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation"><a class="nav-link">Investigaciones</a></router-link>
                 </li>
                 <li class="nav-item">
                     <router-link :to="{ name: 'contacto' }" class="nav-link navbar-toggler collapsed" data-toggle="collapse" data-target="#navbarDefault"
@@ -74,6 +78,9 @@
                 </li>
                 <li class="nav-item contenedor1">
                   <router-link :to="{ name: 'ejecutarAlgoritmo' }" class="nav-link contenido1"><a class="nav-link">Algoritmos</a></router-link>
+                </li>
+                <li class="nav-item contenedor1">
+                  <router-link :to="{ name: 'Investigaciones' }" class="nav-link contenido1"><a class="nav-link">Investigaciones</a></router-link>
                 </li>
                 <li class="nav-item contenedor1">
                     <router-link :to="{ name: 'contacto' }" class="nav-link contenido1"><a class="nav-link">Contacto</a></router-link>

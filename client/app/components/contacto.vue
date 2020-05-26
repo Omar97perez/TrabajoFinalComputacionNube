@@ -37,10 +37,10 @@
                     </div>
                     <div class="icon-box-content">
                       <p class="mb-1">Email.
-                        <span class="color-a">codecloud@gmail.com</span>
+                        <span>GraphCloud@gmail.com</span>
                       </p>
                       <p class="mb-1">Phone.
-                        <span class="color-a">999 999 999</span>
+                        <span>999 999 999</span>
                       </p>
                     </div>
                   </div>
@@ -73,17 +73,17 @@
                       <div class="socials-footer">
                         <ul class="list-inline">
                           <li class="list-inline-item">
-                            <a href="#" class="link-one">
+                            <a href="#" class="link-one" style="color:black!important">
                               <i class="fab fa-facebook" aria-hidden="true"></i>
                             </a>
                           </li>
                           <li class="list-inline-item">
-                            <a href="#" class="link-one">
+                            <a href="#" class="link-one" style="color:black!important">
                               <i class="fab fa-twitter" aria-hidden="true"></i>
                             </a>
                           </li>
                           <li class="list-inline-item">
-                            <a href="#" class="link-one">
+                            <a href="#" class="link-one" style="color:black!important">
                               <i class="fab fa-instagram" aria-hidden="true"></i>
                             </a>
                           </li>

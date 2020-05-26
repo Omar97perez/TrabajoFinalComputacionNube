@@ -24,8 +24,8 @@
         <label for="password"><b>Contraseña</b></label>
         <input type="password" v-model="password" class="form-control" id="password" placeholder="Contraseña">
       </div>
-      <p>Si no tienes cuenta aún, puedes <router-link :to="{ name: 'Registro' }">Registrate</router-link>.</p>
-      <button type="submit" class="btn btn-outline-success">Enviar</button>
+      <p>Si no tienes cuenta aún, puedes <router-link :to="{ name: 'Registro' }" style="color:#d86a1b!important">Registrate</router-link>.</p>
+      <button type="submit" class="btn btn-dark">Enviar</button>
     </form>
   </div>
 </template>

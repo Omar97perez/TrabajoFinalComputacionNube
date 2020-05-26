@@ -34,19 +34,19 @@
                     </div>
                   </div>
                   <div class="agent-content mb-3">
-                    <p class="content-d color-text-a">{{getParagraph}}</p>
-                    <div class="info-agents color-a">
+                    <p class="content-d">{{getParagraph}}</p>
+                    <div class="info-agents">
                       <p>
                         <strong>Teléfono: </strong>
-                        <span class="color-text-a">{{getTelephone}}</span>
+                        <span>{{getTelephone}}</span>
                       </p>
                       <p>
                         <strong>Email: </strong>
-                        <span class="color-text-a">{{getEmail}}</span>
+                        <span>{{getEmail}}</span>
                       </p>
                       <p>
                         <strong>Fecha de Nacimiento: </strong>
-                        <span class="color-text-a">{{getBirthdate}}</span>
+                        <span>{{getBirthdate}}</span>
                       </p>
                     </div>
                   </div>

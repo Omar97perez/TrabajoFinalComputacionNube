@@ -154,30 +154,4 @@ Productos_clases<template>
 
 </template>
 
-<script>
-  export default {
-    name: 'app',
-    data() {
-      return {
-        Productos_clases: [],
-        Productos_apuntes: [],
-        Productos_noticias: [],
-      }
-    },
-    created() {
-      this.getProductos_clases();
-    },
-    methods: {
-      getProductos_clases() {
-        fetch('/api/Get/Methods')
-          .then(res => res.json())
-          .then(data => {
-            this.Productos_clases = data["Methods"];
-          });
-      },
-      addToPrev(invId) {
-        this.$store.dispatch('addToPrev', invId);
-      },
-    }
-  };
-</script>
+<script></script>

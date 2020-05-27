@@ -238,7 +238,7 @@ export default {
       var link = document.createElement("a");
       var position = this.Paginacion.findIndex(method => method.Name === this.titleMethod);
       link.download = this.Paginacion[position].file;
-      link.href = "/api/Get/file/" + this.Paginacion[position].file;
+      link.href = "http://localhost:3000/Get/file/" + this.Paginacion[position].file;
       link.click();
     }
   },

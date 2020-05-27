@@ -71,3 +71,9 @@ app.post('/Execute/Algorithm/:name/:Elements', upload.single('file'), (req, res)
     });
   });	
 });
+
+// Permite recoger Imágenes 
+app.get('/Get/file/:name',(req,res) =>
+{
+  res.sendFile('./Archivos/' + req.params.name, { root: __dirname });
+});

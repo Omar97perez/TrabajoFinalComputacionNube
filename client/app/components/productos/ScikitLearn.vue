@@ -87,10 +87,10 @@
 
         <div class="row mt-5">
           <div class="card col-4" style="border: 1px solid #343a40!important">
-            <img class="card-img-top" src="/img/ScikitLearn.png" alt="Card image cap">
+            <img class="card-img-top" src="/img/ClasificadorBayesiano.jpeg" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title">Scikit Learn</h5>
-              <p class="card-text">Use la librería de Scikit Learn en la nube.</p>
+              <h5 class="card-title">Clasificación Bayesiana</h5>
+              <p class="card-text">Use un clasificador Bayesiano para sus datos.</p>
               <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
                 <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn')">Acceder</button>
               </div>
@@ -104,10 +104,10 @@
 
         <div class="row mt-5">
           <div class="card col-4" style="border: 1px solid #343a40!important">
-            <img class="card-img-top" src="/img/ScikitLearn.png" alt="Card image cap">
+            <img class="card-img-top" src="/img/DesicionTreeRegression.png" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title">Scikit Learn</h5>
-              <p class="card-text">Use la librería de Scikit Learn en la nube.</p>
+              <h5 class="card-title">Decision Tree Regression</h5>
+              <p class="card-text">Use una regresión basada en "Decision Tree Regression" para sus datos.</p>
               <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
                 <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn')">Acceder</button>
               </div>
@@ -121,10 +121,10 @@
 
         <div class="row mt-5">
           <div class="card col-4" style="border: 1px solid #343a40!important">
-            <img class="card-img-top" src="/img/ScikitLearn.png" alt="Card image cap">
+            <img class="card-img-top" src="/img/Mean-Shift.png" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title">Scikit Learn</h5>
-              <p class="card-text">Use la librería de Scikit Learn en la nube.</p>
+              <h5 class="card-title">Mean Shift</h5>
+              <p class="card-text">Use el algoritmo e clustering denominado "Mean Shift" para sus datos.</p>
               <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
                 <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn')">Acceder</button>
               </div>

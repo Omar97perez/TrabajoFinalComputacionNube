@@ -92,7 +92,7 @@
               <h5 class="card-title">Clasificación Bayesiana</h5>
               <p class="card-text">Use un clasificador Bayesiano para sus datos.</p>
               <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
-                <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn')">Acceder</button>
+                <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Clasificación Bayesiana',1)">Acceder</button>
               </div>
             </div>
           </div>
@@ -109,7 +109,7 @@
               <h5 class="card-title">Decision Tree Regression</h5>
               <p class="card-text">Use una regresión basada en "Decision Tree Regression" para sus datos.</p>
               <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
-                <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn')">Acceder</button>
+                <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Decision Tree Regression',2)">Acceder</button>
               </div>
             </div>
           </div>
@@ -126,7 +126,7 @@
               <h5 class="card-title">Mean Shift</h5>
               <p class="card-text">Use el algoritmo e clustering denominado "Mean Shift" para sus datos.</p>
               <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
-                <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn')">Acceder</button>
+                <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Mean Shift',3)">Acceder</button>
               </div>
             </div>
           </div>
@@ -156,6 +156,7 @@ export default {
       tipo:'clases',
       titleMethod:'',
       Paginacion: [],
+      elemento:''
     }
   },
   created() {
@@ -170,12 +171,13 @@ export default {
           this.Productos = this.Paginacion.slice(0,this.tampagina);
         });
     },
-    CargarFormulario(title){
+    CargarFormulario(title, titleModal, elemento){
+      this.elemento = elemento;
       this.titleMethod = title;
       var position = this.Paginacion.findIndex(method => method.Name === title);
-      document.getElementById('TitleMethod').innerHTML = this.Paginacion[position].Name;
+      document.getElementById('TitleMethod').innerHTML = titleModal;
       document.getElementById('ModalMetodo').innerHTML = "";
-      for (var x=0;x<(Object.keys(this.Paginacion[position].Elements).length);x++) { 
+      for (var x=1;x<(Object.keys(this.Paginacion[position].Elements).length);x++) { 
           document.getElementById('ModalMetodo').innerHTML += '<div class="mt-3 form-group" align="left"><label class="font-weight-bold" for="exampleInputEmail1">'+ this.Paginacion[position].Elements[x].Name + "2" + '</label><div class="input-group mb-3"><input type="text" name="' + this.Paginacion[position].Elements[x].Name + '" id="' + this.Paginacion[position].Elements[x].Name + "2" + '" value="' + this.Paginacion[position].Elements[x].value + '" class="form-control"> <div class="input-group-append"><button class="btn btn-outline-primary" type="button" data-toggle="collapse" href="#'+ this.Paginacion[position].Elements[x].Name +'" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-question-circle" aria-hidden="true"></i></button></div></div><small id="emailHelp" class="form-text text-muted">'+ this.Paginacion[position].Elements[x].DescriptionShort +'</small></div> <div class="collapse" id="' + this.Paginacion[position].Elements[x].Name +'"><div class="card card-body">'+ this.Paginacion[position].Elements[x].DescriptionLong +'</div></div>';
       }
     },
@@ -188,10 +190,10 @@ export default {
       $("#ModalCargaImagen").modal();
       var position = this.Paginacion.findIndex(method => method.Name === this.titleMethod);
       var elements = "";
-      for (var x=0;x<(Object.keys(this.Paginacion[position].Elements).length);x++) { 
-          if(x != 0){
-              elements +=  "-";
-          }
+      elements += this.elemento;
+
+      for (var x=1;x<(Object.keys(this.Paginacion[position].Elements).length);x++) { 
+          elements +=  "-";
           elements += document.getElementById(this.Paginacion[position].Elements[x]["Name"] + "2").value;
       }
 

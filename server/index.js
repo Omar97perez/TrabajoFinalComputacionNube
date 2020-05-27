@@ -77,3 +77,9 @@ app.get('/Get/file/:name',(req,res) =>
 {
   res.sendFile('./Archivos/' + req.params.name, { root: __dirname });
 });
+
+
+// Permite devolver El archivo con todos los Métodos
+app.get('/api/Get/Methods', function(req, res) {
+  res.sendFile('./Metodos.json', { root: __dirname });
+});

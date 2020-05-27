@@ -104,5 +104,74 @@ elif algoritmoSeleccionado == 3:
       plt.show()
     # graficaFinal = st.MeanShift(X, "", pedirParametros)
     # graficaFinal.grafica()
+elif algoritmoSeleccionado == 4:
+    X = (array[:,columnaSeleccionadaInicial:columnaSeleccionada])
+    Y = (array[:,columnaSeleccionada])
+    graficaFinal= st.LinearRegresion(X, Y, pedirParametros, nombreFichero)
+    graficaFinal.grafica()
+elif algoritmoSeleccionado == 5:
+    X = (array[:,columnaSeleccionadaInicial:columnaSeleccionada])
+    Y = (array[:,columnaSeleccionada])
+    validation_size = 0.22
+    seed = 123
+    X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
+    model = RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=2,max_features='sqrt', max_leaf_nodes=None)
+    kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+    cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
+    msg = "%s (%f)" % ('Random Forest Regressor', cv_results.mean())
+
+    model.fit(X_train, Y_train)
+    predictions = model.predict(X_validation)
+
+    fig, ax = plt.subplots()
+    fig.suptitle( msg)
+    ax.scatter(Y_validation, predictions, edgecolors=(0, 0, 0))
+    ax.plot([Y_validation.min(), Y_validation.max()], [Y_validation.min(), Y_validation.max()], 'k--', lw=2)
+    ax.set_xlabel('Medido')
+    ax.set_ylabel('Predecido')
+    if nombreFichero:
+      plt.savefig(nombreFichero)
+    else:
+      plt.show()
+
+    if(pedirParametros == 1):
+        fig = plt.figure()
+        fig.suptitle('Diagrama de Cajas y Bigotes para Decision Tree Regression')
+        ax = fig.add_subplot(111)
+        plt.boxplot(cv_results)
+        ax.set_xticklabels('BR')
+        plt.show()
+elif algoritmoSeleccionado == 6:
+    X = (array[:,columnaSeleccionadaInicial:columnaSeleccionada])
+    Y = (array[:,columnaSeleccionada])
+    validation_size = 0.22
+    seed = 123
+    X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
+    model = MLPRegressor()
+    kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+    cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
+    msg = "%s (%f)" % ('Red Neuronal', cv_results.mean())
+
+    model.fit(X_train, Y_train)
+    predictions = model.predict(X_validation)
+
+    fig, ax = plt.subplots()
+    fig.suptitle( msg)
+    ax.scatter(Y_validation, predictions, edgecolors=(0, 0, 0))
+    ax.plot([Y_validation.min(), Y_validation.max()], [Y_validation.min(), Y_validation.max()], 'k--', lw=2)
+    ax.set_xlabel('Medido')
+    ax.set_ylabel('Predecido')
+    if nombreFichero:
+      plt.savefig(nombreFichero)
+    else:
+      plt.show()
+
+    if(pedirParametros == 1):
+        fig = plt.figure()
+        fig.suptitle('Diagrama de Cajas y Bigotes para Decision Tree Regression')
+        ax = fig.add_subplot(111)
+        plt.boxplot(cv_results)
+        ax.set_xticklabels('BR')
+        plt.show()
 else:
     print("El algoritmo introducido no existe")

@@ -173,5 +173,55 @@ elif algoritmoSeleccionado == 6:
         plt.boxplot(cv_results)
         ax.set_xticklabels('BR')
         plt.show()
+elif algoritmoSeleccionado == 7:
+    X = (array[:,columnaSeleccionadaInicial:columnaSeleccionada])
+    Y = (array[:,columnaSeleccionada])
+    validation_size = 0.22
+    seed = 123
+    X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
+    models = []
+
+    models.append(('LR', LinearRegression()))
+
+    models.append(('DTR', DecisionTreeRegressor()))
+
+    models.append(('RF',RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=2,
+            max_features='auto', max_leaf_nodes=None,
+            )))
+
+    models.append(('RF(LOG)',RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=2,
+            max_features='log2', max_leaf_nodes=None,
+            )))
+
+    models.append(('RF(Sqrt)',RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=2,
+            max_features='sqrt', max_leaf_nodes=None,
+            )))
+
+    models.append(('RF(4)',RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=2,
+            max_features=4, max_leaf_nodes=None,
+            )))
+
+    models.append(('NN',MLPRegressor()))
+
+    results = []
+    names = []
+    for name, model in models:
+        kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+        cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
+        results.append(cv_results)
+        names.append(name)
+        msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
+        print(msg)
+
+    fig = plt.figure()
+    fig.suptitle('Comparacion de los algoritmos')
+    ax = fig.add_subplot(111)
+    plt.boxplot(results)
+    ax.set_xticklabels(names)
+    
+    if nombreFichero:
+      plt.savefig(nombreFichero)
+    else:
+      plt.show()
 else:
     print("El algoritmo introducido no existe")

@@ -85,8 +85,22 @@
           <h2><strong>Clasificación</strong></h2>
         </div>
 
-        <div class="row mt-5">
-          <div class="card col-4" style="border: 1px solid #343a40!important">
+        <div class="row mb-5">
+
+          <div class="col-4 mt-5">
+            <div class="card " style="border: 1px solid #343a40!important">
+              <img class="card-img-top" src="/img/DesicionTreeRegression.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Árbol de decisión</h5>
+                <p class="card-text">Use el clasificador basado denominado "Árbol de decisión" para sus datos.</p>
+                <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
+                  <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Decision Tree Regression',2)">Acceder</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card col-4 mt-5" style="border: 1px solid #343a40!important">
             <img class="card-img-top" src="/img/ClasificadorBayesiano.jpeg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Clasificación Bayesiana</h5>
@@ -102,31 +116,123 @@
           <h2><strong>Regresión</strong></h2>
         </div>
 
-        <div class="row mt-5">
-          <div class="card col-4" style="border: 1px solid #343a40!important">
-            <img class="card-img-top" src="/img/DesicionTreeRegression.png" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Decision Tree Regression</h5>
-              <p class="card-text">Use una regresión basada en "Decision Tree Regression" para sus datos.</p>
-              <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
-                <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Decision Tree Regression',2)">Acceder</button>
+        <div class="row mb-5">
+          <div class="col-4 mt-5">
+              <div class="card" style="border: 1px solid #343a40!important">
+                <img class="card-img-top" src="/img/RegresionLinear.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Regresión Lineal</h5>
+                  <p class="card-text">Use una regresión basada en Regresión Lineal para sus datos.</p>
+                  <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
+                    <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Regresión Lineal',4)">Acceder</button>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+
+
+          <div class="col-4 mt-5">
+            <div class="card" style="border: 1px solid #343a40!important">
+              <img class="card-img-top" src="/img/RandomForestRegressor.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Random Forest Regressor</h5>
+                <p class="card-text">Use una regresión basada en "Random Forest Regressor" para sus datos.</p>
+                <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
+                  <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Random Forest Regressor',5)">Acceder</button>
+                </div>
               </div>
             </div>
           </div>
+
+
+
+          <div class="col-4 mt-5">
+            <div class="card" style="border: 1px solid #343a40!important">
+              <img class="card-img-top" src="/img/RedNeuronal.jpg" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Red Neuronal</h5>
+                <p class="card-text">Use una regresión basada en  una Red Neural para sus datos.</p>
+                <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
+                  <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Red Neural',6)">Acceder</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div class="mt-5" align="center">
           <h2><strong>Clustering</strong></h2>
         </div>
 
-        <div class="row mt-5">
-          <div class="card col-4" style="border: 1px solid #343a40!important">
-            <img class="card-img-top" src="/img/Mean-Shift.png" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Mean Shift</h5>
-              <p class="card-text">Use el algoritmo e clustering denominado "Mean Shift" para sus datos.</p>
-              <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
-                <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Mean Shift',3)">Acceder</button>
+        <div class="row mb-5">
+          <div class="col-4 mt-5">
+            <div class="card" style="border: 1px solid #343a40!important">
+              <img class="card-img-top" src="/img/Mean-Shift.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Mean Shift</h5>
+                <p class="card-text">Use el algoritmo e clustering denominado "Mean Shift" para sus datos.</p>
+                <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
+                  <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Mean Shift',3)">Acceder</button>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class="col-4 mt-5">
+              <div class="card" style="border: 1px solid #343a40!important">
+                <img class="card-img-top" src="/img/AgglomerativeClustering.png" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Agglomerative Clustering</h5>
+                  <p class="card-text">Use el algoritmo e clustering denominado "Agglomerative Clustering" para sus datos.</p>
+                  <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
+                    <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Agglomerative Clustering',9)">Acceder</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-4 mt-5">
+              <div class="card" style="border: 1px solid #343a40!important">
+                <img class="card-img-top" src="/img/DBSCAN.png" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">DBSCAN</h5>
+                  <p class="card-text">Use el algoritmo e clustering denominado "DBSCAN" para sus datos.</p>
+                  <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
+                    <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'DBSCAN',11)">Acceder</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="mt-5" align="center">
+          <h2><strong>Comparativas</strong></h2>
+        </div>
+
+        <div class="row">
+          <div class="col-4 mt-5">
+            <div class="card" style="border: 1px solid #343a40!important">
+              <img class="card-img-top" src="/img/Clasificcation.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Clasificaciones</h5>
+                <p class="card-text">Ejecute una comparativa entre los algoritmos de Clasificación y seleccione el que mejor se adapte a sus datos.</p>
+                <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
+                  <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Comparaciones Clasificacipnes',7)">Acceder</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-4 mt-5">
+            <div class="card" style="border: 1px solid #343a40!important">
+              <img class="card-img-top" src="/img/ComparativeRegressions.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Regresiones</h5>
+                <p class="card-text">Ejecute una comparativa entre los algoritmos de Regresión y seleccione el que mejor se adapte a sus datos.</p>
+                <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
+                  <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Comparaciones Regresiones',7)">Acceder</button>
+                </div>
               </div>
             </div>
           </div>

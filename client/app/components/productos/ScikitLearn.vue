@@ -85,7 +85,7 @@
           <h2><strong>Clasificación</strong></h2>
         </div>
 
-        <div class="row mb-5">
+        <div class="row ">
 
           <div class="col-4 mt-5">
             <div class="card " style="border: 1px solid #343a40!important">
@@ -100,13 +100,15 @@
             </div>
           </div>
 
-          <div class="card col-4 mt-5" style="border: 1px solid #343a40!important">
-            <img class="card-img-top" src="/img/ClasificadorBayesiano.jpeg" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Clasificación Bayesiana</h5>
-              <p class="card-text">Use un clasificador Bayesiano para sus datos.</p>
-              <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
-                <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Clasificación Bayesiana',1)">Acceder</button>
+          <div class="col-4 mt-5">
+            <div class="card" style="border: 1px solid #343a40!important">
+              <img class="card-img-top" src="/img/ClasificadorBayesiano.jpeg" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Clasificación Bayesiana</h5>
+                <p class="card-text">Use un clasificador Bayesiano para sus datos.</p>
+                <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
+                  <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Clasificación Bayesiana',1)">Acceder</button>
+                </div>
               </div>
             </div>
           </div>
@@ -236,6 +238,19 @@
               </div>
             </div>
           </div>
+
+          <div class="col-4 mt-5">
+            <div class="card" style="border: 1px solid #343a40!important">
+              <img class="card-img-top" src="/img/ComparacionClustering.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Clustering</h5>
+                <p class="card-text">Ejecute una comparativa entre los algoritmos de Clustering y seleccione el que mejor se adapte a sus datos.</p>
+                <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
+                  <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Comparaciones Clustering',10)">Acceder</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -306,10 +321,10 @@ export default {
       var urlPostMetodo = "";
 
       if(elements == ""){
-          urlPostMetodo = 'http://localhost:3000/Execute/Algorithm/' + this.titleMethod + '/' + "no";
+          urlPostMetodo = 'http://localhost:3000/api/Execute/Algorithm/' + this.titleMethod + '/' + "no";
       }
       else{
-          urlPostMetodo = 'http://localhost:3000/Execute/Algorithm/' + this.titleMethod + '/' + elements;
+          urlPostMetodo = 'http://localhost:3000/api/Execute/Algorithm/' + this.titleMethod + '/' + elements;
       }
       var formData = new FormData();
       formData.append("file", document.getElementById("fileExecuteMethod").files[0]);
@@ -325,7 +340,7 @@ export default {
               $('body').removeClass('modal-open');
               $('.modal-backdrop').remove();
               response = response.split(".");
-              document.getElementById('myimage').src = 'http://localhost:3000/Get/file/' + response[0] + ".png";
+              document.getElementById('myimage').src = 'http://localhost:3000/api/Get/file/' + response[0] + ".png";
               $('body').removeClass('ModalCargaImagen');
               $("#ModalVerImagen").modal();
           },
@@ -346,7 +361,7 @@ export default {
       var link = document.createElement("a");
       var position = this.Paginacion.findIndex(method => method.Name === this.titleMethod);
       link.download = this.Paginacion[position].file;
-      link.href = "http://localhost:3000/Get/file/" + this.Paginacion[position].file;
+      link.href = "http://localhost:3000/api/Get/file/" + this.Paginacion[position].file;
       link.click();
     }
   },

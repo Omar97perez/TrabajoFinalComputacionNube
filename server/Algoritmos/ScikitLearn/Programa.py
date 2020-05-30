@@ -350,8 +350,125 @@ elif algoritmoSeleccionado == 9:
     plt.savefig(nombreFichero)
   else:
     plt.show()
-# elif algoritmoSeleccionado == 10:
+elif algoritmoSeleccionado == 10:
+  plt.figure(figsize=(9, 3))
+  plt.subplot(131)
+  
+  X = (array[:,columnaSeleccionadaInicial:columnaSeleccionada])
+  ms = MeanShift(bin_seeding=True)
+  ms.fit(X)
+  labels = ms.labels_
+  cluster_centers = ms.cluster_centers_
 
+  labels_unique = np.unique(labels)
+  n_clusters_ = len(labels_unique)
+
+  print("number of estimated clusters : %d" % n_clusters_)
+
+  import matplotlib.pyplot as plt
+  from itertools import cycle
+
+  colors = cycle('bgrcmyk')
+  for k, col in zip(range(n_clusters_), colors):
+      my_members = labels == k
+      cluster_center = cluster_centers[k]
+      plt.plot(X[my_members, 0], X[my_members, 1], col + '.')
+      plt.plot(cluster_center[0], cluster_center[1], 'o', markerfacecolor=col,
+              markeredgecolor='k', markersize=14)
+  plt.title('Estimated number of clusters: %d' % n_clusters_)
+
+  plt.subplot(132)
+
+  def plot_dendrogram(model, **kwargs):
+    # Create linkage matrix and then plot the dendrogram
+
+    # create the counts of samples under each node
+    counts = np.zeros(model.children_.shape[0])
+    n_samples = len(model.labels_)
+    for i, merge in enumerate(model.children_):
+        current_count = 0
+        for child_idx in merge:
+            if child_idx < n_samples:
+                current_count += 1  # leaf node
+            else:
+                current_count += counts[child_idx - n_samples]
+        counts[i] = current_count
+
+    linkage_matrix = np.column_stack([model.children_, model.distances_,
+                                      counts]).astype(float)
+
+    # Plot the corresponding dendrogram
+    dendrogram(linkage_matrix, **kwargs)
+
+
+  iris = array
+  X = iris.data
+
+  # setting distance_threshold=0 ensures we compute the full tree.
+  model = AgglomerativeClustering(distance_threshold=0, n_clusters=None)
+
+  model = model.fit(X)
+  plt.title('Hierarchical Clustering Dendrogram')
+  # plot the top three levels of the dendrogram
+  plot_dendrogram(model, truncate_mode='level', p=3)
+  plt.xlabel("Number of points in node (or index of point if no parenthesis).")
+
+  plt.subplot(133)
+
+  import numpy as np
+
+  from sklearn.cluster import DBSCAN
+  from sklearn import metrics
+  from sklearn.datasets import make_blobs
+  from sklearn.preprocessing import StandardScaler
+  # #############################################################################
+  # Generate sample data
+  X = (array[:,columnaSeleccionadaInicial:columnaSeleccionada])
+
+  labels_true = 1
+
+  X = StandardScaler().fit_transform(X)
+
+  # #############################################################################
+  # Compute DBSCAN
+  db = DBSCAN(eps=0.3, min_samples=10).fit(X)
+  core_samples_mask = np.zeros_like(db.labels_, dtype=bool)
+  core_samples_mask[db.core_sample_indices_] = True
+  labels = db.labels_
+
+  # Number of clusters in labels, ignoring noise if present.
+  n_clusters_ = len(set(labels)) - (1 if -1 in labels else 0)
+  n_noise_ = list(labels).count(-1)
+
+  print('Estimated number of clusters: %d' % n_clusters_)
+  print('Estimated number of noise points: %d' % n_noise_)
+  # #############################################################################
+  # Plot result
+  import matplotlib.pyplot as plt
+
+  # Black removed and is used for noise instead.
+  unique_labels = set(labels)
+  colors = [plt.cm.Spectral(each)
+            for each in np.linspace(0, 1, len(unique_labels))]
+  for k, col in zip(unique_labels, colors):
+      if k == -1:
+          # Black used for noise.
+          col = [0, 0, 0, 1]
+
+      class_member_mask = (labels == k)
+
+      xy = X[class_member_mask & core_samples_mask]
+      plt.plot(xy[:, 0], xy[:, 1], 'o', markerfacecolor=tuple(col),
+              markeredgecolor='k', markersize=14)
+
+      xy = X[class_member_mask & ~core_samples_mask]
+      plt.plot(xy[:, 0], xy[:, 1], 'o', markerfacecolor=tuple(col),
+              markeredgecolor='k', markersize=6)
+
+  if nombreFichero:
+    plt.savefig(nombreFichero)
+  else:
+    plt.show()
 elif algoritmoSeleccionado == 11:
   import numpy as np
 

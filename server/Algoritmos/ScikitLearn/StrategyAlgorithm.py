@@ -96,7 +96,7 @@ class DecisionTreeRegression(Algorithm):
         plt.boxplot(cv_results)
         ax.set_xticklabels('BR')
         plt.show()
-
+        
 class MeanShift(Algorithm):
   def grafica(self):
     ms = MeanShift(bin_seeding=True)

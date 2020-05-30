@@ -350,6 +350,8 @@ elif algoritmoSeleccionado == 9:
     plt.savefig(nombreFichero)
   else:
     plt.show()
+# elif algoritmoSeleccionado == 10:
+
 elif algoritmoSeleccionado == 11:
   import numpy as np
 

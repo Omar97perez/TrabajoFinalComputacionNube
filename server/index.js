@@ -46,7 +46,7 @@ mongoose.connect('mongodb://omar:antonio1997@cluster0-shard-00-00-svm5b.mongodb.
   });
 
 // Permite Ejecutar Métodos 
-app.post('/Execute/Algorithm/:name/:Elements', upload.single('file'), (req, res) => {
+app.post('/api/Execute/Algorithm/:name/:Elements', upload.single('file'), (req, res) => {
 
   var elementsUrl = req.params.Elements.split("-");
   var fileExit = req.file.filename.split(".");
@@ -65,6 +65,9 @@ app.post('/Execute/Algorithm/:name/:Elements', upload.single('file'), (req, res)
       }	
     }
 
+
+    console.log("make -C ./Algoritmos/" + req.params.name + " file=../../Archivos/"+ req.file.filename + " fileExit=../../Archivos/" + fileExit[0] + ".png " + stringFinal + " run");
+
     const exec = require('child_process').exec;
     exec("make -C ./Algoritmos/" + req.params.name + " file=../../Archivos/"+ req.file.filename + " fileExit=../../Archivos/" + fileExit[0] + ".png " + stringFinal + " run", (err, stdout, stderr) => {
       res.send(req.file.filename);
@@ -73,7 +76,7 @@ app.post('/Execute/Algorithm/:name/:Elements', upload.single('file'), (req, res)
 });
 
 // Permite recoger Imágenes 
-app.get('/Get/file/:name',(req,res) =>
+app.get('/api/Get/file/:name',(req,res) =>
 {
   res.sendFile('./Archivos/' + req.params.name, { root: __dirname });
 });

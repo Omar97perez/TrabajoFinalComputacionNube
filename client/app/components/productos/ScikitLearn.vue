@@ -92,7 +92,7 @@
               <img class="card-img-top" src="/img/DesicionTreeRegression.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">Árbol de decisión</h5>
-                <p class="card-text">Use el clasificador basado denominado "Árbol de decisión" para sus datos.</p>
+                <p class="card-text">Use el clasificador  denominado "Árbol de decisión" para sus datos.</p>
                 <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
                   <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Decision Tree Regression',2)">Acceder</button>
                 </div>
@@ -105,9 +105,22 @@
               <img class="card-img-top" src="/img/ClasificadorBayesiano.jpeg" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">Clasificación Bayesiana</h5>
-                <p class="card-text">Use un clasificador Bayesiano para sus datos.</p>
+                <p class="card-text">Use el clasificador Bayesiano para sus datos.</p>
                 <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
                   <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Clasificación Bayesiana',1)">Acceder</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-4 mt-5">
+            <div class="card" style="border: 1px solid #343a40!important">
+              <img class="card-img-top" src="/img/GaussianProcessClassifier.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Clasificador Gausiano</h5>
+                <p class="card-text">Use el clasificador Gausiano para sus datos.</p>
+                <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
+                  <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Clasificación Bayesiana',12)">Acceder</button>
                 </div>
               </div>
             </div>
@@ -220,7 +233,7 @@
                 <h5 class="card-title">Clasificaciones</h5>
                 <p class="card-text">Ejecute una comparativa entre los algoritmos de Clasificación y seleccione el que mejor se adapte a sus datos.</p>
                 <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
-                  <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Comparaciones Clasificacipnes',7)">Acceder</button>
+                  <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ScikitLearn', 'Comparaciones Clasificaciones',8)">Acceder</button>
                 </div>
               </div>
             </div>

@@ -58,7 +58,7 @@ class BR(Algorithm):
       plt.show()
 
     if(self.pedirParametros == 1):
-        fig = plt.figure()
+        fig = plt.figure() 
         fig.suptitle('Diagrama de Cajas y Bigotes para BR')
         ax = fig.add_subplot(111)
         plt.boxplot(cv_results)

@@ -46,6 +46,8 @@ from sklearn.cluster import AgglomerativeClustering
 from sklearn.cluster import KMeans
 from sklearn.datasets import make_blobs
 
+from time import time
+
 
 pedirParametros = int(sys.argv[2]) 
 
@@ -220,10 +222,11 @@ elif algoritmoSeleccionado == 7:
             max_features=4, max_leaf_nodes=None,
             )))
 
-    models.append(('NN',MLPRegressor()))
+    # models.append(('NN',MLPRegressor()))
 
     results = []
     names = []
+    start_time = time()
     for name, model in models:
         kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
         cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
@@ -232,8 +235,10 @@ elif algoritmoSeleccionado == 7:
         msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
         print(msg)
 
+    elapsed_time = time() - start_time
+
     fig = plt.figure()
-    fig.suptitle('Comparacion de los algoritmos')
+    fig.suptitle('Comparacion de los algoritmos \n Tiempo ejecución:' + str(round(elapsed_time, 2)) + ' segundos')
     ax = fig.add_subplot(111)
     plt.boxplot(results)
     ax.set_xticklabels(names)

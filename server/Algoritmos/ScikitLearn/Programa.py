@@ -21,26 +21,17 @@ from sklearn import model_selection
 from pandas.plotting import scatter_matrix
 from sklearn.cluster import MeanShift, estimate_bandwidth
 from sklearn.datasets import make_blobs
-import numpy as np
-import matplotlib.pyplot as plt
-import numpy as np
-from sklearn.cluster import MeanShift, estimate_bandwidth
-from sklearn.datasets import make_blobs
-import matplotlib.pyplot as plt
-import numpy as np
 from sklearn.metrics import accuracy_score
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.gaussian_process import GaussianProcessClassifier
 from sklearn.gaussian_process.kernels import RBF
-from sklearn import datasets
-from matplotlib import pyplot as plt
 from scipy.cluster.hierarchy import dendrogram
 from sklearn.datasets import load_iris
 from sklearn.cluster import AgglomerativeClustering
 from sklearn.cluster import KMeans
-from sklearn.datasets import make_blobs
 from time import time
+
 
 
 pedirParametros = int(sys.argv[2])

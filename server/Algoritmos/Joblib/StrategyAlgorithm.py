@@ -27,6 +27,8 @@ from sklearn.datasets import make_blobs
 from time import time
 from joblib import parallel_backend
 
+n_jobs_parrallel=3
+
 class Algorithm:
     def __init__(self, X,Y,pedirParametros, nombreFichero):
       self.X = X

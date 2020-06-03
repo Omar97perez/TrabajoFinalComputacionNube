@@ -65,7 +65,7 @@ else:
     sys.exit()
 
 if(pedirParametros == 1):
-    algoritmoSeleccionado = int(input('¿Qué algoritmo quiere ejecutar?: \n\t 1. Clasificación Bayesiana (Aprendizaje supervisado de clasificación). \n\t 2. Decision Tree Regression (Aprendizaje supervisado de Regresión). \n\t 3. Mean Shift (Aprendizaje no supervisado basado en Clustering). \n  > '))
+    algoritmoSeleccionado = int(input('¿Qué algoritmo quiere ejecutar?: \n\t 1. Clasificación Bayesiana. \n\t 2. Decision Tree Regression. \n\t 3. Mean Shift. \n\t 4. Linear Regresion. \n\t 5. Random Forest. \n\t 6. MLPRegressor. \n\t 7. Comparativa Regresión. \n\t 8. Comparativa Clasificación. \n\t 9. Agglomerative Clustering. \n\t 10. Comparative Clustering. \n\t 11. DBSCAN. \n\t 12. Clasificador Gausiano.\n  > '))
     columnaSeleccionadaInicial = int(input('¿Qué columna inicial quiere analizar?\n > '))
     columnaSeleccionada = int(input('¿Qué columna final quiere analizar?\n > '))
 
@@ -76,7 +76,7 @@ else:
     nombreFichero = sys.argv[6]
 
 array = df.values
-X = (array[:,columnaSeleccionada-2:columnaSeleccionada])
+X = (array[:,columnaSeleccionadaInicial:columnaSeleccionada])
 Y = (array[:,columnaSeleccionada])
 
 if algoritmoSeleccionado == 1:
@@ -104,6 +104,7 @@ elif algoritmoSeleccionado == 8:
   # iris = datasets.load_iris()
   # X = iris.data[:, 0:2]  # we only take the first two features for visualization
   # Y = iris.target
+  X = (array[:,columnaSeleccionada-2:columnaSeleccionada])
   graficaFinal= st.ComparativeClasification(X, Y, pedirParametros, nombreFichero)
   graficaFinal.grafica()
 elif algoritmoSeleccionado == 9:
@@ -121,6 +122,7 @@ elif algoritmoSeleccionado == 12:
   # iris = datasets.load_iris()
   # X = iris.data[:, 0:2]  # we only take the first two features for visualization
   # Y = iris.target
+  X = (array[:,columnaSeleccionada-2:columnaSeleccionada])
   graficaFinal= st.GaussianProcessClassifierSA(X, Y, pedirParametros, nombreFichero)
   graficaFinal.grafica()
 else:

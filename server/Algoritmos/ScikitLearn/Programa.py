@@ -26,26 +26,20 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.cluster import MeanShift, estimate_bandwidth
 from sklearn.datasets import make_blobs
-
-
 import matplotlib.pyplot as plt
 import numpy as np
-
 from sklearn.metrics import accuracy_score
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.gaussian_process import GaussianProcessClassifier
 from sklearn.gaussian_process.kernels import RBF
 from sklearn import datasets
-
 from matplotlib import pyplot as plt
 from scipy.cluster.hierarchy import dendrogram
 from sklearn.datasets import load_iris
 from sklearn.cluster import AgglomerativeClustering
-
 from sklearn.cluster import KMeans
 from sklearn.datasets import make_blobs
-
 from time import time
 
 
@@ -94,37 +88,41 @@ elif algoritmoSeleccionado == 2:
     graficaFinal= st.DecisionTreeRegression(X, Y, pedirParametros, nombreFichero)
     graficaFinal.grafica()
 elif algoritmoSeleccionado == 3:
-    X = (array[:,columnaSeleccionadaInicial:columnaSeleccionada])
-    ms = MeanShift(bin_seeding=True)
-    ms.fit(X)
-    labels = ms.labels_
-    cluster_centers = ms.cluster_centers_
+  X = (array[:,columnaSeleccionadaInicial:columnaSeleccionada])
+  ms = MeanShift(bin_seeding=True)
+  ms.fit(X)
+  labels = ms.labels_
+  cluster_centers = ms.cluster_centers_
 
-    labels_unique = np.unique(labels)
-    n_clusters_ = len(labels_unique)
+  labels_unique = np.unique(labels)
+  n_clusters_ = len(labels_unique)
 
-    print("number of estimated clusters : %d" % n_clusters_)
+  print("number of estimated clusters : %d" % n_clusters_)
 
-    import matplotlib.pyplot as plt
-    from itertools import cycle
+  import matplotlib.pyplot as plt
+  from itertools import cycle
 
-    plt.figure(1)
-    plt.clf()
+  plt.figure(1)
+  plt.clf()
 
-    colors = cycle('bgrcmyk')
-    for k, col in zip(range(n_clusters_), colors):
-        my_members = labels == k
-        cluster_center = cluster_centers[k]
-        plt.plot(X[my_members, 0], X[my_members, 1], col + '.')
-        plt.plot(cluster_center[0], cluster_center[1], 'o', markerfacecolor=col,
-                markeredgecolor='k', markersize=14)
-    plt.title('Estimated number of clusters: %d' % n_clusters_)
-    if nombreFichero:
-      plt.savefig(nombreFichero)
-    else:
-      plt.show()
-    # graficaFinal = st.MeanShift(X, "", pedirParametros)
-    # graficaFinal.grafica()
+  colors = cycle('bgrcmyk')
+  start_time = time()
+  for k, col in zip(range(n_clusters_), colors):
+      my_members = labels == k
+      cluster_center = cluster_centers[k]
+      plt.plot(X[my_members, 0], X[my_members, 1], col + '.')
+      plt.plot(cluster_center[0], cluster_center[1], 'o', markerfacecolor=col,
+              markeredgecolor='k', markersize=14)
+  elapsed_time = time() - start_time
+  elapsed_time = format(elapsed_time, '.6f')
+  salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
+  plt.title('Estimated number of clusters:' + str(n_clusters_) + '\n' + salida)
+  if nombreFichero:
+    plt.savefig(nombreFichero)
+  else:
+    plt.show()
+  # graficaFinal = st.MeanShift(X, "", pedirParametros)
+  # graficaFinal.grafica()
 elif algoritmoSeleccionado == 4:
     X = (array[:,columnaSeleccionadaInicial:columnaSeleccionada])
     Y = (array[:,columnaSeleccionada])
@@ -137,9 +135,13 @@ elif algoritmoSeleccionado == 5:
     seed = 123
     X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
     model = RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=2,max_features='sqrt', max_leaf_nodes=None)
+    start_time = time()
     kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+    elapsed_time = time() - start_time
+    elapsed_time = format(elapsed_time, '.6f')
+    salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
     cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
-    msg = "%s (%f)" % ('Random Forest Regressor', cv_results.mean())
+    msg = 'Random Forest Regressor ' + '(' + str(format(cv_results.mean(),'.4f')) + ') \n' +  salida
 
     model.fit(X_train, Y_train)
     predictions = model.predict(X_validation)
@@ -169,9 +171,13 @@ elif algoritmoSeleccionado == 6:
     seed = 123
     X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
     model = MLPRegressor()
+    start_time = time()
     kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+    elapsed_time = time() - start_time
+    elapsed_time = format(elapsed_time, '.6f')
+    salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
     cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
-    msg = "%s (%f)" % ('Red Neuronal', cv_results.mean())
+    msg = 'Red Neuronal ' + '(' + str(format(cv_results.mean(),'.4f')) + ') \n' +  salida
 
     model.fit(X_train, Y_train)
     predictions = model.predict(X_validation)
@@ -222,7 +228,7 @@ elif algoritmoSeleccionado == 7:
             max_features=4, max_leaf_nodes=None,
             )))
 
-    # models.append(('NN',MLPRegressor()))
+    models.append(('NN',MLPRegressor()))
 
     results = []
     names = []
@@ -236,9 +242,10 @@ elif algoritmoSeleccionado == 7:
         print(msg)
 
     elapsed_time = time() - start_time
+    elapsed_time = format(elapsed_time, '.6f')
 
     fig = plt.figure()
-    fig.suptitle('Comparacion de los algoritmos \n Tiempo ejecución:' + str(round(elapsed_time, 2)) + ' segundos')
+    fig.suptitle('Comparacion de los algoritmos \n Tiempo ejecución:' + str(elapsed_time) + ' segundos')
     ax = fig.add_subplot(111)
     plt.boxplot(results)
     ax.set_xticklabels(names)
@@ -249,6 +256,8 @@ elif algoritmoSeleccionado == 7:
       plt.show()
 elif algoritmoSeleccionado == 8:
   # iris = datasets.load_iris()
+  # X = iris.data[:, 0:2]  # we only take the first two features for visualization
+  # y = iris.target 
   X = (array[:,columnaSeleccionada-2:columnaSeleccionada])
   y = (array[:,columnaSeleccionada])
 
@@ -286,6 +295,9 @@ elif algoritmoSeleccionado == 8:
   xx, yy = np.meshgrid(xx, yy)
   Xfull = np.c_[xx.ravel(), yy.ravel()]
 
+
+  start_time = time()
+
   for index, (name, classifier) in enumerate(classifiers.items()):
       classifier.fit(X, y)
 
@@ -309,8 +321,11 @@ elif algoritmoSeleccionado == 8:
           if idx.any():
               plt.scatter(X[idx, 0], X[idx, 1], marker='o', c='w', edgecolor='k')
 
+  elapsed_time = time() - start_time
+  elapsed_time = format(elapsed_time, '.6f')
+
   ax = plt.axes([0.15, 0.04, 0.7, 0.05])
-  plt.title("Probability")
+  plt.title('Probability \n' + 'Tiempo ejecución:' + str(elapsed_time) + ' segundos')
   plt.colorbar(imshow_handle, cax=ax, orientation='horizontal')
 
   if nombreFichero:
@@ -339,15 +354,17 @@ elif algoritmoSeleccionado == 9:
     # Plot the corresponding dendrogram
     dendrogram(linkage_matrix, **kwargs)
 
-
   iris = array
   X = iris.data
 
-  # setting distance_threshold=0 ensures we compute the full tree.
+  start_time = time()
   model = AgglomerativeClustering(distance_threshold=0, n_clusters=None)
+  elapsed_time = time() - start_time
+  elapsed_time = format(elapsed_time, '.6f')
+  salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
 
   model = model.fit(X)
-  plt.title('Hierarchical Clustering Dendrogram')
+  plt.title('Hierarchical Clustering Dendrogram \n' + salida)
   # plot the top three levels of the dendrogram
   plot_dendrogram(model, truncate_mode='level', p=3)
   plt.xlabel("Number of points in node (or index of point if no parenthesis).")
@@ -374,13 +391,17 @@ elif algoritmoSeleccionado == 10:
   from itertools import cycle
 
   colors = cycle('bgrcmyk')
+  start_time = time()
   for k, col in zip(range(n_clusters_), colors):
       my_members = labels == k
       cluster_center = cluster_centers[k]
       plt.plot(X[my_members, 0], X[my_members, 1], col + '.')
       plt.plot(cluster_center[0], cluster_center[1], 'o', markerfacecolor=col,
               markeredgecolor='k', markersize=14)
-  plt.title('Estimated number of clusters: %d' % n_clusters_)
+  elapsed_time = time() - start_time
+  elapsed_time = format(elapsed_time, '.6f')
+  salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
+  plt.title('Estimated number of clusters:' + str(n_clusters_) + '\n' + salida)
 
   plt.subplot(132)
 
@@ -510,6 +531,7 @@ elif algoritmoSeleccionado == 11:
   unique_labels = set(labels)
   colors = [plt.cm.Spectral(each)
             for each in np.linspace(0, 1, len(unique_labels))]
+  start_time = time()
   for k, col in zip(unique_labels, colors):
       if k == -1:
           # Black used for noise.
@@ -524,16 +546,21 @@ elif algoritmoSeleccionado == 11:
       xy = X[class_member_mask & ~core_samples_mask]
       plt.plot(xy[:, 0], xy[:, 1], 'o', markerfacecolor=tuple(col),
               markeredgecolor='k', markersize=6)
+  elapsed_time = time() - start_time
+  elapsed_time = format(elapsed_time, '.6f')
+  salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
 
-  plt.title('Estimated number of clusters: %d' % n_clusters_)
+  plt.title('Estimated number of clusters:' +  str(n_clusters_) + "\n" + salida)
   if nombreFichero:
     plt.savefig(nombreFichero)
   else:
     plt.show()
 elif algoritmoSeleccionado == 12:
- # iris = datasets.load_iris()
-  X = (array[:,columnaSeleccionada-2:columnaSeleccionada])
-  y = (array[:,columnaSeleccionada])
+  iris = datasets.load_iris()
+  X = iris.data[:, 0:2]  # we only take the first two features for visualization
+  y = iris.target 
+  # X = (array[:,columnaSeleccionada-2:columnaSeleccionada])
+  # y = (array[:,columnaSeleccionada])
 
   n_features = X.shape[1]
 
@@ -554,6 +581,8 @@ elif algoritmoSeleccionado == 12:
   yy = np.linspace(1, 5, 100).T
   xx, yy = np.meshgrid(xx, yy)
   Xfull = np.c_[xx.ravel(), yy.ravel()]
+
+  start_time = time()
 
   for index, (name, classifier) in enumerate(classifiers.items()):
       classifier.fit(X, y)
@@ -578,8 +607,12 @@ elif algoritmoSeleccionado == 12:
           if idx.any():
               plt.scatter(X[idx, 0], X[idx, 1], marker='o', c='w', edgecolor='k')
 
+  elapsed_time = time() - start_time
+  elapsed_time = format(elapsed_time, '.6f')
+  salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
+
   ax = plt.axes([0.15, 0.04, 0.7, 0.05])
-  plt.title("Probability")
+  plt.title("Clasificador Gausian \n" + salida)
   plt.colorbar(imshow_handle, cax=ax, orientation='horizontal')
 
   if nombreFichero:

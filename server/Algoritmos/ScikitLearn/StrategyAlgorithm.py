@@ -24,6 +24,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.cluster import MeanShift, estimate_bandwidth
 from sklearn.datasets import make_blobs
+from time import time
 
 
 class Algorithm:
@@ -39,9 +40,14 @@ class BR(Algorithm):
     seed = 123
     X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(self.X, self.Y, test_size=validation_size, random_state=seed)
     model = linear_model.BayesianRidge()
+
+    start_time = time()
     kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+    elapsed_time = time() - start_time
+    elapsed_time = format(elapsed_time, '.6f')
+    salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
     cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
-    msg = "%s (%f)" % ('Clasificador Bayesiano', cv_results.mean())
+    msg = 'Clasificador Bayesiano ' + '(' + str(format(cv_results.mean(),'.4f')) + ') \n' +  salida
 
     model.fit(X_train, Y_train)
     predictions = model.predict(X_validation)
@@ -71,9 +77,13 @@ class DecisionTreeRegression(Algorithm):
     seed = 123
     X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(self.X, self.Y, test_size=validation_size, random_state=seed)
     model = DecisionTreeRegressor()
+    start_time = time()
     kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+    elapsed_time = time() - start_time
+    elapsed_time = format(elapsed_time, '.6f')
+    salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
     cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
-    msg = "%s (%f)" % ('Decision Tree Regression', cv_results.mean())
+    msg = 'Árbol de decisión ' + '(' + str(format(cv_results.mean(),'.4f')) + ') \n' +  salida
 
     model.fit(X_train, Y_train)
     predictions = model.predict(X_validation)
@@ -134,9 +144,13 @@ class LinearRegresion(Algorithm):
     seed = 123
     X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(self.X, self.Y, test_size=validation_size, random_state=seed)
     model = LinearRegression()
+    start_time = time()
     kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+    elapsed_time = time() - start_time
+    elapsed_time = format(elapsed_time, '.6f')
+    salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
     cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
-    msg = "%s (%f)" % ('Linear Regression', cv_results.mean())
+    msg = 'Regresión Lineal ' + '(' + str(format(cv_results.mean(),'.4f')) + ') \n' +  salida
 
     model.fit(X_train, Y_train)
     predictions = model.predict(X_validation)

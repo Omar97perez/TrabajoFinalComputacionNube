@@ -47,7 +47,7 @@ class BR(Algorithm):
     with parallel_backend('threading', n_jobs=n_jobs_parrallel):
       kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
     elapsed_time = time() - start_time
-    elapsed_time = format(elapsed_time, '.6f')
+    elapsed_time = format(elapsed_time, '.8f')
     salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
     cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
     msg = 'Clasificador Bayesiano ' + '(' + str(format(cv_results.mean(),'.4f')) + ') \n' +  salida
@@ -84,7 +84,7 @@ class DecisionTreeRegression(Algorithm):
     with parallel_backend('threading', n_jobs=n_jobs_parrallel):
       kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
     elapsed_time = time() - start_time
-    elapsed_time = format(elapsed_time, '.6f')
+    elapsed_time = format(elapsed_time, '.8f')
     salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
     cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
     msg = 'Árbol de decisión ' + '(' + str(format(cv_results.mean(),'.4f')) + ') \n' +  salida
@@ -152,7 +152,7 @@ class LinearRegresion(Algorithm):
     with parallel_backend('threading', n_jobs=n_jobs_parrallel):
       kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
     elapsed_time = time() - start_time
-    elapsed_time = format(elapsed_time, '.6f')
+    elapsed_time = format(elapsed_time, '.8f')
     salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
     cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
     msg = 'Regresión Lineal ' + '(' + str(format(cv_results.mean(),'.4f')) + ') \n' +  salida

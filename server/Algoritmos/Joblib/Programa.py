@@ -116,7 +116,7 @@ elif algoritmoSeleccionado == 3:
         plt.plot(cluster_center[0], cluster_center[1], 'o', markerfacecolor=col,
                 markeredgecolor='k', markersize=14)
   elapsed_time = time() - start_time
-  elapsed_time = format(elapsed_time, '.6f')
+  elapsed_time = format(elapsed_time, '.8f')
   salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
   plt.title('Estimated number of clusters:' + str(n_clusters_) + '\n' + salida)
   if nombreFichero:
@@ -141,7 +141,7 @@ elif algoritmoSeleccionado == 5:
     with parallel_backend('threading', n_jobs=n_jobs_parrallel):
       kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
     elapsed_time = time() - start_time
-    elapsed_time = format(elapsed_time, '.6f')
+    elapsed_time = format(elapsed_time, '.8f')
     salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
     cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
     msg = 'Random Forest Regressor ' + '(' + str(format(cv_results.mean(),'.4f')) + ') \n' +  salida
@@ -178,7 +178,7 @@ elif algoritmoSeleccionado == 6:
     with parallel_backend('threading', n_jobs=n_jobs_parrallel):
       kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
     elapsed_time = time() - start_time
-    elapsed_time = format(elapsed_time, '.6f')
+    elapsed_time = format(elapsed_time, '.8f')
     salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
     cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
     msg = 'Red Neuronal ' + '(' + str(format(cv_results.mean(),'.4f')) + ') \n' +  salida
@@ -247,7 +247,7 @@ elif algoritmoSeleccionado == 7:
           print(msg)
 
     elapsed_time = time() - start_time
-    elapsed_time = format(elapsed_time, '.6f')
+    elapsed_time = format(elapsed_time, '.8f')
 
     fig = plt.figure()
     fig.suptitle('Comparacion de los algoritmos \n Tiempo ejecución:' + str(elapsed_time) + ' segundos')
@@ -327,7 +327,7 @@ elif algoritmoSeleccionado == 8:
                 plt.scatter(X[idx, 0], X[idx, 1], marker='o', c='w', edgecolor='k')
 
   elapsed_time = time() - start_time
-  elapsed_time = format(elapsed_time, '.6f')
+  elapsed_time = format(elapsed_time, '.8f')
 
   ax = plt.axes([0.15, 0.04, 0.7, 0.05])
   plt.title('Probability \n' + 'Tiempo ejecución:' + str(elapsed_time) + ' segundos')
@@ -366,7 +366,7 @@ elif algoritmoSeleccionado == 9:
   with parallel_backend('threading', n_jobs=n_jobs_parrallel):
     model = AgglomerativeClustering(distance_threshold=0, n_clusters=None)
   elapsed_time = time() - start_time
-  elapsed_time = format(elapsed_time, '.6f')
+  elapsed_time = format(elapsed_time, '.8f')
   salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
 
   model = model.fit(X)
@@ -406,7 +406,7 @@ elif algoritmoSeleccionado == 10:
         plt.plot(cluster_center[0], cluster_center[1], 'o', markerfacecolor=col,
                 markeredgecolor='k', markersize=14)
   elapsed_time = time() - start_time
-  elapsed_time = format(elapsed_time, '.6f')
+  elapsed_time = format(elapsed_time, '.8f')
   salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
   plt.title('Estimated number of clusters:' + str(n_clusters_) + '\n' + salida)
 
@@ -555,7 +555,7 @@ elif algoritmoSeleccionado == 11:
         plt.plot(xy[:, 0], xy[:, 1], 'o', markerfacecolor=tuple(col),
                 markeredgecolor='k', markersize=6)
   elapsed_time = time() - start_time
-  elapsed_time = format(elapsed_time, '.6f')
+  elapsed_time = format(elapsed_time, '.8f')
   salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
 
   plt.title('Estimated number of clusters:' +  str(n_clusters_) + "\n" + salida)
@@ -616,7 +616,7 @@ elif algoritmoSeleccionado == 12:
                 plt.scatter(X[idx, 0], X[idx, 1], marker='o', c='w', edgecolor='k')
 
   elapsed_time = time() - start_time
-  elapsed_time = format(elapsed_time, '.6f')
+  elapsed_time = format(elapsed_time, '.8f')
   salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
 
   ax = plt.axes([0.15, 0.04, 0.7, 0.05])

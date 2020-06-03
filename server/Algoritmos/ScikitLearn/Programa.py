@@ -65,7 +65,7 @@ else:
     sys.exit()
 
 if(pedirParametros == 1):
-    algoritmoSeleccionado = int(input('¿Qué algoritmo quiere ejecutar?: \n\t 1. Clasificación Bayesiana. \n\t 2. Decision Tree Regression. \n\t 3. Mean Shift. \n\t 4. Linear Regresion. \n\t 5. Random Forest. \n\t 6. MLPRegressor. \n\t 7. Comparativa Regresión. \n\t 8. Comparativa Clasificación. \n\t 9. Agglomerative Clustering. \n\t 10. Comparative Clustering. \n\t 11. DBSCAN. \n\t 12. Clasificador Gausiano.\n  > '))
+    algoritmoSeleccionado = int(input('¿Qué algoritmo quiere ejecutar?: \n\t 1. Clasificación Bayesiana. \n\t 2. Decision Tree Regression. \n\t 3. Mean Shift. \n\t 4. Linear Regresion. \n\t 5. Random Forest. \n\t 6. MLPRegressor. \n\t 7. Comparativa Regresión. \n\t 8. Comparativa Clasificación. \n\t 9. Agglomerative Clustering. \n\t 10. Comparativa Clustering. \n\t 11. DBSCAN. \n\t 12. Clasificador Gausiano.\n  > '))
     columnaSeleccionadaInicial = int(input('¿Qué columna inicial quiere analizar?\n > '))
     columnaSeleccionada = int(input('¿Qué columna final quiere analizar?\n > '))
 

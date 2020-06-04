@@ -33,7 +33,6 @@ from sklearn.cluster import KMeans
 from time import time
 
 
-
 pedirParametros = int(sys.argv[2])
 
 #Cargamos los datos de un fichero
@@ -99,8 +98,6 @@ elif algoritmoSeleccionado == 8:
   graficaFinal= st.ComparativeClasification(X, Y, pedirParametros, nombreFichero)
   graficaFinal.grafica()
 elif algoritmoSeleccionado == 9:
-  # iris = array
-  # X = iris.data
   graficaFinal= st.AgglomerativeClusteringSA(X, Y, pedirParametros, nombreFichero)
   graficaFinal.grafica()
 elif algoritmoSeleccionado == 10:
@@ -117,4 +114,4 @@ elif algoritmoSeleccionado == 12:
   graficaFinal= st.GaussianProcessClassifierSA(X, Y, pedirParametros, nombreFichero)
   graficaFinal.grafica()
 else:
-    print("El algoritmo introducido no existe")
+  print("El algoritmo introducido no existe")

@@ -1,1 +1,0 @@
-Carpeta que almacena los algoritmos de Scikit Learn.

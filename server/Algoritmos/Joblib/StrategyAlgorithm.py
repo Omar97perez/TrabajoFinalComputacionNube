@@ -32,6 +32,7 @@ from sklearn.cluster import AgglomerativeClustering
 from sklearn.cluster import KMeans
 from time import time
 
+n_jobs_parrallel=3
 
 def plot_dendrogram(model, **kwargs):
   # Create linkage matrix and then plot the dendrogram
@@ -69,7 +70,8 @@ class BR(Algorithm):
     model = linear_model.BayesianRidge()
 
     start_time = time()
-    kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+    with parallel_backend('threading', n_jobs=n_jobs_parrallel):
+      kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
     elapsed_time = time() - start_time
     elapsed_time = format(elapsed_time, '.6f')
     salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
@@ -105,7 +107,8 @@ class DecisionTreeRegression(Algorithm):
     X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(self.X, self.Y, test_size=validation_size, random_state=seed)
     model = DecisionTreeRegressor()
     start_time = time()
-    kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+    with parallel_backend('threading', n_jobs=n_jobs_parrallel):
+      kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
     elapsed_time = time() - start_time
     elapsed_time = format(elapsed_time, '.6f')
     salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
@@ -153,13 +156,18 @@ class MeanShift1(Algorithm):
     plt.clf()
 
     colors = cycle('bgrcmyk')
-    for k, col in zip(range(n_clusters_), colors):
-        my_members = labels == k
-        cluster_center = cluster_centers[k]
-        plt.plot(self.X[my_members, 0], self.X[my_members, 1], col + '.')
-        plt.plot(cluster_center[0], cluster_center[1], 'o', markerfacecolor=col,
-                markeredgecolor='k', markersize=14)
-    plt.title('Estimated number of clusters: %d' % n_clusters_)
+    start_time = time()
+    with parallel_backend('threading', n_jobs=n_jobs_parrallel):    
+      for k, col in zip(range(n_clusters_), colors):
+          my_members = labels == k
+          cluster_center = cluster_centers[k]
+          plt.plot(self.X[my_members, 0], self.X[my_members, 1], col + '.')
+          plt.plot(cluster_center[0], cluster_center[1], 'o', markerfacecolor=col,
+                  markeredgecolor='k', markersize=14)
+    elapsed_time = time() - start_time
+    elapsed_time = format(elapsed_time, '.8f')
+    salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
+    plt.title('Estimated number of clusters:' + str(n_clusters_) + '\n' + salida)    
     if self.nombreFichero:
       plt.savefig(self.nombreFichero)
     else:
@@ -172,7 +180,8 @@ class LinearRegresion(Algorithm):
     X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(self.X, self.Y, test_size=validation_size, random_state=seed)
     model = LinearRegression()
     start_time = time()
-    kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+    with parallel_backend('threading', n_jobs=n_jobs_parrallel):
+      kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
     elapsed_time = time() - start_time
     elapsed_time = format(elapsed_time, '.6f')
     salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
@@ -244,7 +253,8 @@ class MLPRegressorSA(Algorithm):
     X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(self.X, self.Y, test_size=validation_size, random_state=seed)
     model = MLPRegressor()
     start_time = time()
-    kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+    with parallel_backend('threading', n_jobs=n_jobs_parrallel):
+      kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
     elapsed_time = time() - start_time
     elapsed_time = format(elapsed_time, '.6f')
     salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
@@ -280,7 +290,8 @@ class RandomForestRegressorSA(Algorithm):
     X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(self.X, self.Y, test_size=validation_size, random_state=seed)
     model = RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=2,max_features='sqrt', max_leaf_nodes=None)
     start_time = time()
-    kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+    with parallel_backend('threading', n_jobs=n_jobs_parrallel):
+      kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
     elapsed_time = time() - start_time
     elapsed_time = format(elapsed_time, '.6f')
     salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
@@ -341,13 +352,14 @@ class ComparativeRegression(Algorithm):
     results = []
     names = []
     start_time = time()
-    for name, model in models:
-        kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
-        cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
-        results.append(cv_results)
-        names.append(name)
-        msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
-        print(msg)
+    with parallel_backend('threading', n_jobs=n_jobs_parrallel):
+      for name, model in models:
+          kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+          cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
+          results.append(cv_results)
+          names.append(name)
+          msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
+          print(msg)
 
     elapsed_time = time() - start_time
     elapsed_time = format(elapsed_time, '.6f')
@@ -400,29 +412,29 @@ class ComparativeClasification(Algorithm):
 
 
     start_time = time()
+    with parallel_backend('threading', n_jobs=n_jobs_parrallel):
+      for index, (name, classifier) in enumerate(classifiers.items()):
+          classifier.fit(self.X, self.Y)
 
-    for index, (name, classifier) in enumerate(classifiers.items()):
-        classifier.fit(self.X, self.Y)
+          y_pred = classifier.predict(self.X)
+          accuracy = accuracy_score(self.Y, y_pred)
+          print("Accuracy (train) for %s: %0.1f%% " % (name, accuracy * 100))
 
-        y_pred = classifier.predict(self.X)
-        accuracy = accuracy_score(self.Y, y_pred)
-        print("Accuracy (train) for %s: %0.1f%% " % (name, accuracy * 100))
-
-        # View probabilities:
-        probas = classifier.predict_proba(Xfull)
-        n_classes = np.unique(y_pred).size
-        for k in range(n_classes):
-            plt.subplot(n_classifiers, n_classes, index * n_classes + k + 1)
-            plt.title("Class %d" % k)
-            if k == 0:
-                plt.ylabel(name)
-            imshow_handle = plt.imshow(probas[:, k].reshape((100, 100)),
-                                      extent=(3, 9, 1, 5), origin='lower')
-            plt.xticks(())
-            plt.yticks(())
-            idx = (y_pred == k)
-            if idx.any():
-                plt.scatter(self.X[idx, 0], self.X[idx, 1], marker='o', c='w', edgecolor='k')
+          # View probabilities:
+          probas = classifier.predict_proba(Xfull)
+          n_classes = np.unique(y_pred).size
+          for k in range(n_classes):
+              plt.subplot(n_classifiers, n_classes, index * n_classes + k + 1)
+              plt.title("Class %d" % k)
+              if k == 0:
+                  plt.ylabel(name)
+              imshow_handle = plt.imshow(probas[:, k].reshape((100, 100)),
+                                        extent=(3, 9, 1, 5), origin='lower')
+              plt.xticks(())
+              plt.yticks(())
+              idx = (y_pred == k)
+              if idx.any():
+                  plt.scatter(self.X[idx, 0], self.X[idx, 1], marker='o', c='w', edgecolor='k')
 
     elapsed_time = time() - start_time
     elapsed_time = format(elapsed_time, '.6f')
@@ -439,7 +451,8 @@ class ComparativeClasification(Algorithm):
 class AgglomerativeClusteringSA(Algorithm):
   def grafica(self):
     start_time = time()
-    model = AgglomerativeClustering(distance_threshold=0, n_clusters=None)
+    with parallel_backend('threading', n_jobs=n_jobs_parrallel):
+      model = AgglomerativeClustering(distance_threshold=0, n_clusters=None)
     elapsed_time = time() - start_time
     elapsed_time = format(elapsed_time, '.6f')
     salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
@@ -469,12 +482,13 @@ class ComparativeClustering(Algorithm):
 
     colors = cycle('bgrcmyk')
     start_time = time()
-    for k, col in zip(range(n_clusters_), colors):
-        my_members = labels == k
-        cluster_center = cluster_centers[k]
-        plt.plot(self.X[my_members, 0], self.X[my_members, 1], col + '.')
-        plt.plot(cluster_center[0], cluster_center[1], 'o', markerfacecolor=col,
-                markeredgecolor='k', markersize=14)
+    with parallel_backend('threading', n_jobs=n_jobs_parrallel):
+      for k, col in zip(range(n_clusters_), colors):
+          my_members = labels == k
+          cluster_center = cluster_centers[k]
+          plt.plot(self.X[my_members, 0], self.X[my_members, 1], col + '.')
+          plt.plot(cluster_center[0], cluster_center[1], 'o', markerfacecolor=col,
+                  markeredgecolor='k', markersize=14)
     elapsed_time = time() - start_time
     elapsed_time = format(elapsed_time, '.6f')
     salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
@@ -555,29 +569,29 @@ class GaussianProcessClassifierSA(Algorithm):
     Xfull = np.c_[xx.ravel(), yy.ravel()]
 
     start_time = time()
+    with parallel_backend('threading', n_jobs=n_jobs_parrallel):
+      for index, (name, classifier) in enumerate(classifiers.items()):
+          classifier.fit(self.X, self.Y)
 
-    for index, (name, classifier) in enumerate(classifiers.items()):
-        classifier.fit(self.X, self.Y)
+          y_pred = classifier.predict(self.X)
+          accuracy = accuracy_score(self.Y, y_pred)
+          print("Accuracy (train) for %s: %0.1f%% " % (name, accuracy * 100))
 
-        y_pred = classifier.predict(self.X)
-        accuracy = accuracy_score(self.Y, y_pred)
-        print("Accuracy (train) for %s: %0.1f%% " % (name, accuracy * 100))
-
-        # View probabilities:
-        probas = classifier.predict_proba(Xfull)
-        n_classes = np.unique(y_pred).size
-        for k in range(n_classes):
-            plt.subplot(n_classifiers, n_classes, index * n_classes + k + 1)
-            plt.title("Class %d" % k)
-            if k == 0:
-                plt.ylabel(name)
-            imshow_handle = plt.imshow(probas[:, k].reshape((100, 100)),
-                                      extent=(3, 9, 1, 5), origin='lower')
-            plt.xticks(())
-            plt.yticks(())
-            idx = (y_pred == k)
-            if idx.any():
-                plt.scatter(self.X[idx, 0], self.X[idx, 1], marker='o', c='w', edgecolor='k')
+          # View probabilities:
+          probas = classifier.predict_proba(Xfull)
+          n_classes = np.unique(y_pred).size
+          for k in range(n_classes):
+              plt.subplot(n_classifiers, n_classes, index * n_classes + k + 1)
+              plt.title("Class %d" % k)
+              if k == 0:
+                  plt.ylabel(name)
+              imshow_handle = plt.imshow(probas[:, k].reshape((100, 100)),
+                                        extent=(3, 9, 1, 5), origin='lower')
+              plt.xticks(())
+              plt.yticks(())
+              idx = (y_pred == k)
+              if idx.any():
+                  plt.scatter(self.X[idx, 0], self.X[idx, 1], marker='o', c='w', edgecolor='k')
 
     elapsed_time = time() - start_time
     elapsed_time = format(elapsed_time, '.6f')
@@ -622,20 +636,21 @@ class DBSCANSA(Algorithm):
     colors = [plt.cm.Spectral(each)
               for each in np.linspace(0, 1, len(unique_labels))]
     start_time = time()
-    for k, col in zip(unique_labels, colors):
-        if k == -1:
-            # Black used for noise.
-            col = [0, 0, 0, 1]
+    with parallel_backend('threading', n_jobs=n_jobs_parrallel):
+      for k, col in zip(unique_labels, colors):
+          if k == -1:
+              # Black used for noise.
+              col = [0, 0, 0, 1]
 
-        class_member_mask = (labels == k)
+          class_member_mask = (labels == k)
 
-        xy = self.X[class_member_mask & core_samples_mask]
-        plt.plot(xy[:, 0], xy[:, 1], 'o', markerfacecolor=tuple(col),
-                markeredgecolor='k', markersize=14)
+          xy = self.X[class_member_mask & core_samples_mask]
+          plt.plot(xy[:, 0], xy[:, 1], 'o', markerfacecolor=tuple(col),
+                  markeredgecolor='k', markersize=14)
 
-        xy = self.X[class_member_mask & ~core_samples_mask]
-        plt.plot(xy[:, 0], xy[:, 1], 'o', markerfacecolor=tuple(col),
-                markeredgecolor='k', markersize=6)
+          xy = self.X[class_member_mask & ~core_samples_mask]
+          plt.plot(xy[:, 0], xy[:, 1], 'o', markerfacecolor=tuple(col),
+                  markeredgecolor='k', markersize=6)
     elapsed_time = time() - start_time
     elapsed_time = format(elapsed_time, '.6f')
     salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'

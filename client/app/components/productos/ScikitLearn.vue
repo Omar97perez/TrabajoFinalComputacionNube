@@ -274,6 +274,7 @@
 <script>
 
 import axios from 'axios';
+
 class Buscador {
   constructor(busqueda = '',tipo = '',ciudad = '') {
     this.busqueda = busqueda;
@@ -298,7 +299,7 @@ export default {
   },
   methods: {
     getProductos() {
-      fetch('http://localhost:3000/api/Get/Methods')
+      fetch('/api/Get/Methods')
         .then(res => res.json())
         .then(data => {
           this.Paginacion = data["Methods"];
@@ -334,10 +335,10 @@ export default {
       var urlPostMetodo = "";
 
       if(elements == ""){
-          urlPostMetodo = 'http://localhost:3000/api/Execute/Algorithm/' + this.titleMethod + '/' + "no";
+          urlPostMetodo = '/api/Execute/Algorithm/' + this.titleMethod + '/' + "no";
       }
       else{
-          urlPostMetodo = 'http://localhost:3000/api/Execute/Algorithm/' + this.titleMethod + '/' + elements;
+          urlPostMetodo = '/api/Execute/Algorithm/' + this.titleMethod + '/' + elements;
       }
       var formData = new FormData();
       formData.append("file", document.getElementById("fileExecuteMethod").files[0]);
@@ -353,7 +354,7 @@ export default {
               $('body').removeClass('modal-open');
               $('.modal-backdrop').remove();
               response = response.split(".");
-              document.getElementById('myimage').src = 'http://localhost:3000/api/Get/file/' + response[0] + ".png";
+              document.getElementById('myimage').src = '/api/Get/file/' + response[0] + ".png";
               $('body').removeClass('ModalCargaImagen');
               $("#ModalVerImagen").modal();
           },
@@ -374,7 +375,7 @@ export default {
       var link = document.createElement("a");
       var position = this.Paginacion.findIndex(method => method.Name === this.titleMethod);
       link.download = this.Paginacion[position].file;
-      link.href = "http://localhost:3000/api/Get/file/" + this.Paginacion[position].file;
+      link.href = "/api/Get/file/" + this.Paginacion[position].file;
       link.click();
     }
   },

@@ -1,0 +1,44 @@
+apiVersion: "sparkoperator.k8s.io/v1beta2"
+kind: SparkApplication
+metadata:
+  name: test-app
+  namespace: default
+spec:
+  type: Python
+  pythonVersion: "2"
+  mode: cluster
+  image: "pierresimt/spark-kube"
+  imagePullPolicy: IfNotPresent
+  mainApplicationFile: local:///mnt/work/decision_tree_classification_example.py
+  sparkVersion: "2.4.5"
+  volumes:
+    - name: nfs-spark-driver
+      nfs:
+        server: 10.0.0.250
+        path: /NFS/data
+    - name: nfs-spark-executor
+      nfs:
+        server: 10.0.0.250
+        path: /NFS/spark-data
+  restartPolicy:
+    type: OnFailure
+    onFailureRetries: 3
+    onFailureRetryInterval: 10
+    onSubmissionFailureRetries: 5
+    onSubmissionFailureRetryInterval: 20
+  driver:
+    labels:
+      version: 2.4.5
+    serviceAccount: spark
+    volumeMounts:
+        - name: nfs-spark-driver
+          mountPath: /mnt/work
+  executor:
+    instances: 1
+    labels:
+      version: 2.4.5
+    volumeMounts:
+        - name: nfs-spark-driver
+          mountPath: /mnt/work
+        - name: nfs-spark-executor
+          mountPath: /mnt/data

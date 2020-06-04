@@ -1,0 +1,27 @@
+version: 2.1
+jobs:
+    build-and-push-client:
+        machine: true
+        steps:
+            - checkout
+            - run: |
+                echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+            
+            - run: cd client && docker build -t pierresimt/frontend-cn:latest .
+            - run: docker push pierresimt/frontend-cn:latest
+    
+    build-and-push-server:
+        machine: true
+        steps:
+            - checkout
+            - run: |
+                echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+            
+            - run: cd server && docker build -t pierresimt/backend-cn:latest .
+            - run: docker push pierresimt/backend-cn:latest
+
+workflows:
+    build:
+        jobs:
+            - build-and-push-client
+            - build-and-push-server

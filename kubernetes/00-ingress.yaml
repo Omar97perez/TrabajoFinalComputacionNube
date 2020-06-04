@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: graph-cloud
+    annotations:
+      ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+    rules:
+    - host: app.graphcloud.local
+      http:
+        paths: 
+        - path: /
+          backend:
+            serviceName: frontend
+            servicePort: 4100
+        - path: /api/
+          backend:
+            serviceName: backend
+            servicePort: 3000   

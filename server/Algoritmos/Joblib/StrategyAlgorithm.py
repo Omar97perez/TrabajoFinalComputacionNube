@@ -31,6 +31,7 @@ from sklearn.datasets import load_iris
 from sklearn.cluster import AgglomerativeClustering
 from sklearn.cluster import KMeans
 from time import time
+from joblib import parallel_backend
 
 n_jobs_parrallel=3
 
@@ -283,43 +284,6 @@ class MLPRegressorSA(Algorithm):
         ax.set_xticklabels('BR')
         plt.show()
 
-class RandomForestRegressorSA(Algorithm):
-  def grafica(self):
-    validation_size = 0.22
-    seed = 123
-    X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(self.X, self.Y, test_size=validation_size, random_state=seed)
-    model = RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=2,max_features='sqrt', max_leaf_nodes=None)
-    start_time = time()
-    with parallel_backend('threading', n_jobs=n_jobs_parrallel):
-      kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
-    elapsed_time = time() - start_time
-    elapsed_time = format(elapsed_time, '.6f')
-    salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
-    cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
-    msg = 'Random Forest Regressor ' + '(' + str(format(cv_results.mean(),'.4f')) + ') \n' +  salida
-
-    model.fit(X_train, Y_train)
-    predictions = model.predict(X_validation)
-
-    fig, ax = plt.subplots()
-    fig.suptitle( msg)
-    ax.scatter(Y_validation, predictions, edgecolors=(0, 0, 0))
-    ax.plot([Y_validation.min(), Y_validation.max()], [Y_validation.min(), Y_validation.max()], 'k--', lw=2)
-    ax.set_xlabel('Medido')
-    ax.set_ylabel('Predecido')
-    if self.nombreFichero:
-      plt.savefig(self.nombreFichero)
-    else:
-      plt.show()
-
-    if(pedirParametros == 1):
-        fig = plt.figure()
-        fig.suptitle('Diagrama de Cajas y Bigotes para Decision Tree Regression')
-        ax = fig.add_subplot(111)
-        plt.boxplot(cv_results)
-        ax.set_xticklabels('BR')
-        plt.show()
-
 class ComparativeRegression(Algorithm):
   def grafica(self):
     validation_size = 0.22
@@ -470,6 +434,8 @@ class ComparativeClustering(Algorithm):
   def grafica(self):
     import matplotlib.pyplot as plt
     from itertools import cycle
+    import numpy as np
+    
     plt.figure(figsize=(9, 3))
     plt.subplot(131)
 
@@ -504,6 +470,12 @@ class ComparativeClustering(Algorithm):
     plt.xlabel("Number of points in node (or index of point if no parenthesis).")
 
     plt.subplot(133)
+
+    import numpy as np
+    from sklearn.cluster import DBSCAN
+    from sklearn import metrics
+    from sklearn.datasets import make_blobs
+    from sklearn.preprocessing import StandardScaler
 
     # #############################################################################
     # Compute DBSCAN

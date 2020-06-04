@@ -91,10 +91,10 @@ elif algoritmoSeleccionado == 7:
   graficaFinal= st.ComparativeRegression(X, Y, pedirParametros, nombreFichero)
   graficaFinal.grafica()
 elif algoritmoSeleccionado == 8:
-  # iris = datasets.load_iris()
-  # X = iris.data[:, 0:2]  # we only take the first two features for visualization
-  # Y = iris.target
-  X = (array[:,columnaSeleccionada-2:columnaSeleccionada])
+  iris = datasets.load_iris()
+  X = iris.data[:, 0:2]  # we only take the first two features for visualization
+  Y = iris.target
+  # X = (array[:,columnaSeleccionada-2:columnaSeleccionada])
   graficaFinal= st.ComparativeClasification(X, Y, pedirParametros, nombreFichero)
   graficaFinal.grafica()
 elif algoritmoSeleccionado == 9:

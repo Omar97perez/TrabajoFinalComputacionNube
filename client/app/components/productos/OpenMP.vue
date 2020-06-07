@@ -87,7 +87,7 @@
 
         <div class="row ">
 
-          <div class="col-4 mt-5">
+          <div class="col-md-4 col-s-12 mt-5">
             <div class="card " style="border: 1px solid #343a40!important">
               <img class="card-img-top" src="/img/DesicionTreeRegression.png" alt="Card image cap">
               <div class="card-body">
@@ -100,7 +100,7 @@
             </div>
           </div>
 
-          <div class="col-4 mt-5">
+          <div class="col-md-4 col-s-12 mt-5">
             <div class="card" style="border: 1px solid #343a40!important">
               <img class="card-img-top" src="/img/ClasificadorBayesiano.jpeg" alt="Card image cap">
               <div class="card-body">
@@ -113,7 +113,7 @@
             </div>
           </div>
 
-          <div class="col-4 mt-5">
+          <div class="col-md-4 col-s-12 mt-5">
             <div class="card" style="border: 1px solid #343a40!important">
               <img class="card-img-top" src="/img/GaussianProcessClassifier.png" alt="Card image cap">
               <div class="card-body">
@@ -132,7 +132,7 @@
         </div>
 
         <div class="row mb-5">
-          <div class="col-4 mt-5">
+          <div class="col-md-4 col-s-12 mt-5">
               <div class="card" style="border: 1px solid #343a40!important">
                 <img class="card-img-top" src="/img/RegresionLinear.jpg" alt="Card image cap">
                 <div class="card-body">
@@ -147,7 +147,7 @@
 
 
 
-          <div class="col-4 mt-5">
+          <div class="col-md-4 col-s-12 mt-5">
             <div class="card" style="border: 1px solid #343a40!important">
               <img class="card-img-top" src="/img/RandomForestRegressor.png" alt="Card image cap">
               <div class="card-body">
@@ -162,7 +162,7 @@
 
 
 
-          <div class="col-4 mt-5">
+          <div class="col-md-4 col-s-12 mt-5">
             <div class="card" style="border: 1px solid #343a40!important">
               <img class="card-img-top" src="/img/RedNeuronal.jpg" alt="Card image cap">
               <div class="card-body">
@@ -182,7 +182,7 @@
         </div>
 
         <div class="row mb-5">
-          <div class="col-4 mt-5">
+          <div class="col-md-4 col-s-12 mt-5">
             <div class="card" style="border: 1px solid #343a40!important">
               <img class="card-img-top" src="/img/Mean-Shift.png" alt="Card image cap">
               <div class="card-body">
@@ -194,7 +194,7 @@
               </div>
             </div>
           </div>
-            <div class="col-4 mt-5">
+            <div class="col-md-4 col-s-12 mt-5">
               <div class="card" style="border: 1px solid #343a40!important">
                 <img class="card-img-top" src="/img/AgglomerativeClustering.png" alt="Card image cap">
                 <div class="card-body">
@@ -207,7 +207,7 @@
               </div>
             </div>
 
-            <div class="col-4 mt-5">
+            <div class="col-md-4 col-s-12 mt-5">
               <div class="card" style="border: 1px solid #343a40!important">
                 <img class="card-img-top" src="/img/DBSCAN.png" alt="Card image cap">
                 <div class="card-body">
@@ -226,7 +226,7 @@
         </div>
 
         <div class="row">
-          <div class="col-4 mt-5">
+          <div class="col-md-4 col-s-12 mt-5">
             <div class="card" style="border: 1px solid #343a40!important">
               <img class="card-img-top" src="/img/Clasificcation.png" alt="Card image cap">
               <div class="card-body">
@@ -239,7 +239,7 @@
             </div>
           </div>
 
-          <div class="col-4 mt-5">
+          <div class="col-md-4 col-s-12 mt-5">
             <div class="card" style="border: 1px solid #343a40!important">
               <img class="card-img-top" src="/img/ComparativeRegressions.png" alt="Card image cap">
               <div class="card-body">
@@ -252,7 +252,7 @@
             </div>
           </div>
 
-          <div class="col-4 mt-5">
+          <div class="col-md-4 col-s-12 mt-5">
             <div class="card" style="border: 1px solid #343a40!important">
               <img class="card-img-top" src="/img/ComparacionClustering.png" alt="Card image cap">
               <div class="card-body">

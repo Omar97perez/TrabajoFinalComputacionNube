@@ -91,11 +91,11 @@ app.post('/api/Execute/Algorithm/:name/:Elements', upload.single('file'), (req, 
           "value": req.file.filename
         },
         {
-          "name": "COLUMN_INICIAL",
+          "name": "COLUMNA_INICIAL",
           "value": elementsUrl[1]
         },
         {
-          "name": "COLUMN_FINAL",
+          "name": "COLUMNA_FINAL",
           "value": elementsUrl[2]
         },
         {
@@ -110,11 +110,11 @@ app.post('/api/Execute/Algorithm/:name/:Elements', upload.single('file'), (req, 
           "value": req.file.filename
         },
         {
-          "name": "COLUMN_INICIAL",
+          "name": "COLUMNA_INICIAL",
           "value": elementsUrl[1]
         },
         {
-          "name": "COLUMN_FINAL",
+          "name": "COLUMNA_FINAL",
           "value": elementsUrl[2]
         },
         {

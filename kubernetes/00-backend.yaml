@@ -1,9 +1,9 @@
 apiVersion: apps/v1
-kind: Deployment # Modificar a StatefulSet (aplicacion con persistencia)
+kind: Deployment # Modificar a StatefulSet (aplicacion con persistencia debido a los resultados que devuelve)
 metadata:
   name: backend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: backend
@@ -12,12 +12,23 @@ spec:
       labels:
         app: backend
     spec:
+      volumes:
+        - name: nfs-data
+          persistentVolumeClaim:
+            claimName: data-nfs-server-provisioner-1591523510-0
       containers:
       - name: backend
         image: pierresimt/backend-cn
         imagePullPolicy: Always
+        volumeMounts:
+          - name: nfs-data
+            mountPath: "/usr/src/app/Archivos"
         ports:
         - containerPort: 3000
+        readinessProbe:
+          httpGet:
+            path: /api/Get/Methods
+            port: 3000
         livenessProbe:
           httpGet:
             path: /api/Get/Methods
@@ -30,6 +41,7 @@ kind: Service
 metadata:
     name: backend
 spec:
+    type: NodePort
     ports:
     - port: 3000
       targetPort: 3000

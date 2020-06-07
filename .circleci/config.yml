@@ -23,24 +23,24 @@ jobs:
             - run: cd server && docker build -t pierresimt/backend-cn-gke:latest .
             - run: docker push pierresimt/backend-cn-gke:latest
     
-        deploy:
-            description: Deploy application to Google Kubernetes Engine
-            machine: true
-            steps:
-                - gcp-gke/install
-                - gcp-gke/update-kubeconfig-with-credentials:
-                    cluster: devops-p4
-                    perform-login: true
-                - gcp-gke/rollout-image:
-                    cluster:  devops-p4
-                    deployment: frontend
-                    container: frontend
-                    image: pierresimt/frontend-cn
-                - gcp-gke/rollout-image:
-                    cluster:  devops-p4
-                    deployment: backend
-                    container: backend
-                    image: pierresimt/backend-cn-gke
+    deploy:
+        description: Deploy application to Google Kubernetes Engine
+        machine: true
+        steps:
+            - gcp-gke/install
+            - gcp-gke/update-kubeconfig-with-credentials:
+                cluster: devops-p4
+                perform-login: true
+            - gcp-gke/rollout-image:
+                cluster:  devops-p4
+                deployment: frontend
+                container: frontend
+                image: pierresimt/frontend-cn
+            - gcp-gke/rollout-image:
+                cluster:  devops-p4
+                deployment: backend
+                container: backend
+                image: pierresimt/backend-cn-gke
 
 workflows:
     build:

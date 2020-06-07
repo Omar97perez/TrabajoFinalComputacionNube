@@ -13,15 +13,16 @@ spec:
         app: backend
     spec:
       volumes:
-        - name: nfs-data
-          persistentVolumeClaim:
-            claimName: data-nfs-server-provisioner-1591523510-0
+        - name: nfs-spark-driver
+          nfs:
+            server: 10.0.0.250
+            path: /NFS/data
       containers:
       - name: backend
         image: pierresimt/backend-cn
         imagePullPolicy: Always
         volumeMounts:
-          - name: nfs-data
+          - name: nfs-spark-driver
             mountPath: "/usr/src/app/Archivos"
         ports:
         - containerPort: 3000

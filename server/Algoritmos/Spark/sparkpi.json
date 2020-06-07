@@ -1,58 +1,104 @@
 {
-    "apiVersion": "sparkoperator.k8s.io/v1beta2",
-    "kind": "SparkApplication",
-    "metadata": {
-      "name": "spark-pi-again",
-      "namespace": "default"
-    },
-    "spec": {
-      "type": "Scala",
-      "mode": "cluster",
-      "image": "gcr.io/spark-operator/spark:v2.4.5",
-      "imagePullPolicy": "Always",
-      "mainClass": "org.apache.spark.examples.SparkPi",
-      "mainApplicationFile": "local:///opt/spark/examples/jars/spark-examples_2.11-2.4.5.jar",
-      "sparkVersion": "2.4.5",
-      "restartPolicy": {
-        "type": "Never"
+  "apiVersion": "sparkoperator.k8s.io/v1beta2",
+  "kind": "SparkApplication",
+  "metadata": {
+    "name": "test-app",
+    "namespace": "default"
+  },
+  "spec": {
+    "type": "Python",
+    "pythonVersion": "3",
+    "mode": "cluster",
+    "image": "pierresimt/spark-kube",
+    "imagePullPolicy": "IfNotPresent",
+    "mainApplicationFile": "local:///mnt/work/classification/decission_tree.py",
+    "sparkVersion": "2.4.5",
+    "volumes": [
+      {
+        "name": "nfs-spark-driver",
+        "nfs": {
+          "server": "10.0.0.250",
+          "path": "/NFS/data"
+        }
       },
-      "volumes": [
+      {
+        "name": "nfs-spark-executor",
+        "nfs": {
+          "server": "10.0.0.250",
+          "path": "/NFS/spark-data"
+        }
+      }
+    ],
+    "restartPolicy": {
+      "type": "OnFailure",
+      "onFailureRetries": 3,
+      "onFailureRetryInterval": 10,
+      "onSubmissionFailureRetries": 5,
+      "onSubmissionFailureRetryInterval": 20
+    },
+    "driver": {
+      "labels": {
+        "version": "2.4.5"
+      },
+      "serviceAccount": "spark",
+      "volumeMounts": [
         {
-          "name": "test-volume",
-          "hostPath": {
-            "path": "/tmp",
-            "type": "Directory"
-          }
+          "name": "nfs-spark-driver",
+          "mountPath": "/mnt/work"
         }
       ],
-      "driver": {
-        "cores": 1,
-        "coreLimit": "1200m",
-        "memory": "512m",
-        "labels": {
-          "version": "2.4.5"
+      "env": [
+        {
+          "name": "FILE_NAME_IN",
+          "value": "TomeCano.csv"
         },
-        "serviceAccount": "spark",
-        "volumeMounts": [
-          {
-            "name": "test-volume",
-            "mountPath": "/tmp"
-          }
-        ]
+        {
+          "name": "COLUMN_INICIAL",
+          "value": "1"
+        },
+        {
+          "name": "COLUMN_FINAL",
+          "value": "12"
+        },
+        {
+          "name": "FILE_NAME_EXIT",
+          "value": "test.png"
+        }
+      ]
+    },
+    "executor": {
+      "instances": 1,
+      "labels": {
+        "version": "2.4.5"
       },
-      "executor": {
-        "cores": 1,
-        "instances": 1,
-        "memory": "512m",
-        "labels": {
-          "version": "2.4.5"
+      "volumeMounts": [
+        {
+          "name": "nfs-spark-driver",
+          "mountPath": "/mnt/work"
         },
-        "volumeMounts": [
-          {
-            "name": "test-volume",
-            "mountPath": "/tmp"
-          }
-        ]
-      }
+        {
+          "name": "nfs-spark-executor",
+          "mountPath": "/mnt/data"
+        }
+      ],
+      "env": [
+        {
+          "name": "FILE_NAME_IN",
+          "value": "TomeCano.csv"
+        },
+        {
+          "name": "COLUMN_INICIAL",
+          "value": "1"
+        },
+        {
+          "name": "COLUMN_FINAL",
+          "value": "12"
+        },
+        {
+          "name": "FILE_NAME_EXIT",
+          "value": "test.png"
+        }
+      ]
     }
   }
+}

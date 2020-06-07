@@ -24,6 +24,7 @@ kind: Service
 metadata:
     name: frontend
 spec:
+    type: NodePort
     ports:
     - port: 4100
       targetPort: 4100

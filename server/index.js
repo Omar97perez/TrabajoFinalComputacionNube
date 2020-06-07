@@ -59,8 +59,8 @@ app.listen(app.get('port'), () => {
 app.post('/api/Execute/Algorithm/:name/:Elements', upload.single('file'), (req, res) => {
 
   var elementsUrl = req.params.Elements.split("-");
-  
-  if ( req.file ) {
+
+  if (req.file) {
     var fileExit = req.file.filename.split(".");
   }
 
@@ -80,34 +80,91 @@ app.post('/api/Execute/Algorithm/:name/:Elements', upload.single('file'), (req, 
 
     if (req.params.name === "Spark") {
 
-      
+
       const backend = new Request({ kubeconfig })
       const client = new Client({ backend, version: '1.13' })
+      const deploymentManifest = require('./Algoritmos/' + req.params.name + "/" + elementsUrl[0])
 
-      console.log(backend)
-      
+      deploymentManifest.spec.driver.env = [
+        {
+          "name": "FILE_NAME_IN",
+          "value": req.file.filename
+        },
+        {
+          "name": "COLUMNA_INICIAL",
+          "value": elementsUrl[1]
+        },
+        {
+          "name": "COLUMNA_FINAL",
+          "value": elementsUrl[2]
+        },
+        {
+          "name": "FILE_NAME_EXIT",
+          "value": fileExit[0] + ".png"
+        }
+      ]
+
+      deploymentManifest.spec.executor.env = [
+        {
+          "name": "FILE_NAME_IN",
+          "value": req.file.filename
+        },
+        {
+          "name": "COLUMNA_INICIAL",
+          "value": elementsUrl[1]
+        },
+        {
+          "name": "COLUMNA_FINAL",
+          "value": elementsUrl[2]
+        },
+        {
+          "name": "FILE_NAME_EXIT",
+          "value": fileExit[0] + ".png"
+        }
+      ]
+
       try {
-        const deploymentManifest = require('./Algoritmos/' + req.params.name + "/sparkpi.json")
 
         client.addCustomResourceDefinition(crd);
 
-        console.log(client)
+        console.log("%j", deploymentManifest)
 
-        client.apis['sparkoperator.k8s.io'].v1beta2.namespaces('default').sparkapplication.post({ body: deploymentManifest }).then((create) => {
-          console.log('Create:', create);
-          res.send(create);
+        client.apis['sparkoperator.k8s.io'].v1beta2.namespaces('default').sparkapplication.post({ body: deploymentManifest }).then(async (create) => {
+          console.log('Create: %j', create);
+
+          var isCompleted = false;
+
+          while (!isCompleted) {
+
+            try {
+              const result = await client.api.v1.namespaces('default').pods(create.body.metadata.name + '-driver').status.get()
+              console.log(result.body.status.phase)
+
+              if (result.body.status.phase == "Succeeded") {
+
+                isCompleted = true
+
+                client.apis['sparkoperator.k8s.io'].v1beta2.namespaces('default').sparkapplications(create.body.metadata.name).delete().then(() => {
+                  res.send(req.file.filename)
+                })
+
+              } else if (result.body.status.phase == "Failed") {
+                res.status(500).send()
+              }
+
+            } catch (err) {
+
+            }
+          }
         })
-      
+
       } catch (err) {
         if (err.code !== 409) throw err
-        client.apis['sparkoperator.k8s.io'].v1beta2.namespaces('default').deployments('spark-pi-again').put({ body: deploymentManifest }).then((create) => {
-          console.log('Create:', create);
-          res.send(create);
-        })
+        res.status(500).send()
       }
 
     } else {
-      
+
       console.log("make -C ./Algoritmos/" + req.params.name + " file=../../Archivos/" + req.file.filename + " fileExit=../../Archivos/" + fileExit[0] + ".png " + stringFinal + " run");
 
 

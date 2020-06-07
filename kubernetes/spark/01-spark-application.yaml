@@ -9,7 +9,7 @@ spec:
   mode: cluster
   image: "pierresimt/spark-kube"
   imagePullPolicy: IfNotPresent
-  mainApplicationFile: local:///mnt/work/decision_tree_classification_example.py
+  mainApplicationFile: local:///mnt/work/classification/decission_tree.py
   sparkVersion: "2.4.5"
   volumes:
     - name: nfs-spark-driver

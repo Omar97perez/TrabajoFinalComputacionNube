@@ -1,5 +1,9 @@
-runTomeCanoUser:
-	python3 Programa.py ./Data/TomeCano.csv 1 
+runTomeCanoUser1:
+	python3 Programa.py ./Data/TomeCano1.csv 1 
+runTomeCanoUser2:
+	python3 Programa.py ./Data/TomeCano2.csv 1 
+runTomeCanoUser3:
+	python3 Programa.py ./Data/TomeCano3.csv 1 
 runTomeCanoServerBR:
 	python3 Programa.py ./Data/TomeCano.csv 0 1 1 12 ./FinalImage_BR.png
 runTomeCanoServerDTR:

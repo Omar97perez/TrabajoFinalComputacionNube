@@ -234,7 +234,7 @@ class RandomForestRegressorSA(Algorithm):
     else:
       plt.show()
 
-    if(pedirParametros == 1):
+    if(self.pedirParametros == 1):
         fig = plt.figure()
         fig.suptitle('Diagrama de Cajas y Bigotes para Decision Tree Regression')
         ax = fig.add_subplot(111)
@@ -270,7 +270,7 @@ class MLPRegressorSA(Algorithm):
     else:
       plt.show()
 
-    if(pedirParametros == 1):
+    if(self.pedirParametros == 1):
         fig = plt.figure()
         fig.suptitle('Diagrama de Cajas y Bigotes para Decision Tree Regression')
         ax = fig.add_subplot(111)

@@ -27,7 +27,7 @@
             <img class="card-img-top" src="/img/OpenMP.jpg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">OpenMP</h5>
-              <p class="card-text">Use la librería de Scikit Learn hybto con OpenMP en la nube.</p>
+              <p class="card-text">Use la librería de Scikit Learn junto con OpenMP en la nube.</p>
               <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
                   <router-link :to="{ name: 'OpenMP' }" >
                     <button class="btn btn-dark">Acceder</button>
@@ -39,7 +39,7 @@
             <img class="card-img-top" src="/img/Spark.jpeg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Spark</h5>
-              <p class="card-text">Use Spark estadísctico en la nube.</p>
+              <p class="card-text">Use Spark estadístico en la nube.</p>
               <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
                   <router-link :to="{ name: 'Spark' }" >
                     <button class="btn btn-dark">Acceder</button>

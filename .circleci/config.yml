@@ -35,12 +35,12 @@ jobs:
                 cluster:  devops-p4
                 deployment: frontend
                 container: frontend
-                image: pierresimt/frontend-cn
+                image: pierresimt/frontend-cn:latest
             - gcp-gke/rollout-image:
                 cluster:  devops-p4
                 deployment: backend
                 container: backend
-                image: pierresimt/backend-cn-gke
+                image: pierresimt/backend-cn-gke:latest
 
 workflows:
     build:

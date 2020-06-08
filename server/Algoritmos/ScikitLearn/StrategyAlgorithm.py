@@ -70,14 +70,15 @@ class BR(Algorithm):
 
     start_time = time()
     kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+    
+    model.fit(X_train, Y_train)
+    predictions = model.predict(X_validation)
+
     elapsed_time = time() - start_time
     elapsed_time = format(elapsed_time, '.6f')
     salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
     cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
     msg = 'Clasificador Bayesiano ' + '(' + str(format(cv_results.mean(),'.4f')) + ') \n' +  salida
-
-    model.fit(X_train, Y_train)
-    predictions = model.predict(X_validation)
 
     fig, ax = plt.subplots()
     fig.suptitle( msg)
@@ -106,14 +107,16 @@ class DecisionTreeRegression(Algorithm):
     model = DecisionTreeRegressor()
     start_time = time()
     kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+
+
+    model.fit(X_train, Y_train)
+    predictions = model.predict(X_validation)
+
     elapsed_time = time() - start_time
     elapsed_time = format(elapsed_time, '.6f')
     salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
     cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
     msg = 'Árbol de decisión ' + '(' + str(format(cv_results.mean(),'.4f')) + ') \n' +  salida
-
-    model.fit(X_train, Y_train)
-    predictions = model.predict(X_validation)
 
     fig, ax = plt.subplots()
     fig.suptitle( msg)
@@ -173,14 +176,15 @@ class LinearRegresion(Algorithm):
     model = LinearRegression()
     start_time = time()
     kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+
+    model.fit(X_train, Y_train)
+    predictions = model.predict(X_validation)
+
     elapsed_time = time() - start_time
     elapsed_time = format(elapsed_time, '.6f')
     salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
     cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
     msg = 'Regresión Lineal ' + '(' + str(format(cv_results.mean(),'.4f')) + ') \n' +  salida
-
-    model.fit(X_train, Y_train)
-    predictions = model.predict(X_validation)
 
     fig, ax = plt.subplots()
     fig.suptitle( msg)
@@ -209,14 +213,15 @@ class RandomForestRegressorSA(Algorithm):
     model = RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=2,max_features='sqrt', max_leaf_nodes=None)
     start_time = time()
     kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+
+    model.fit(X_train, Y_train)
+    predictions = model.predict(X_validation)
+
     elapsed_time = time() - start_time
     elapsed_time = format(elapsed_time, '.6f')
     salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
     cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
     msg = 'Random Forest Regressor ' + '(' + str(format(cv_results.mean(),'.4f')) + ') \n' +  salida
-
-    model.fit(X_train, Y_train)
-    predictions = model.predict(X_validation)
 
     fig, ax = plt.subplots()
     fig.suptitle( msg)
@@ -245,14 +250,14 @@ class MLPRegressorSA(Algorithm):
     model = MLPRegressor()
     start_time = time()
     kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+    model.fit(X_train, Y_train)
+    predictions = model.predict(X_validation)
+
     elapsed_time = time() - start_time
     elapsed_time = format(elapsed_time, '.6f')
     salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
     cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
     msg = 'Red Neuronal ' + '(' + str(format(cv_results.mean(),'.4f')) + ') \n' +  salida
-
-    model.fit(X_train, Y_train)
-    predictions = model.predict(X_validation)
 
     fig, ax = plt.subplots()
     fig.suptitle( msg)
@@ -404,11 +409,11 @@ class AgglomerativeClusteringSA(Algorithm):
   def grafica(self):
     start_time = time()
     model = AgglomerativeClustering(distance_threshold=0, n_clusters=None)
+    model = model.fit(self.X)
+
     elapsed_time = time() - start_time
     elapsed_time = format(elapsed_time, '.6f')
     salida = 'Tiempo ejecución:' + str(elapsed_time) + ' segundos'
-
-    model = model.fit(self.X)
     plt.title('Hierarchical Clustering Dendrogram \n' + salida)
     plot_dendrogram(model, truncate_mode='level', p=3)
     plt.xlabel("Number of points in node (or index of point if no parenthesis).")

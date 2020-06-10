@@ -10,7 +10,7 @@ jobs:
             - run: |
                 echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
             
-            - run: cd client && docker build -t pierresimt/frontend-cn:latest .
+            - run: cd client && docker build --no-cache -t pierresimt/frontend-cn:latest .
             - run: docker push pierresimt/frontend-cn:latest
     
     build-and-push-server:
@@ -20,7 +20,7 @@ jobs:
             - run: |
                 echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
             
-            - run: cd server && docker build -t pierresimt/backend-cn-gke:latest .
+            - run: cd server && docker build --no-cache -t pierresimt/backend-cn-gke:latest .
             - run: docker push pierresimt/backend-cn-gke:latest
     
     deploy:

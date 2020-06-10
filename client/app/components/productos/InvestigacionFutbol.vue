@@ -11,6 +11,15 @@
               </button>
               </div>
               <div class="modal-body" align="center">
+                  <div class="form-group" align="left">
+                    <label class="font-weight-bold">Algortimo</label>
+                    <select class="form-control" id="AlgoritmoSeleccionado">
+                      <option value="1">Regresión Lineal</option>
+                      <option value="2">Árbol de Regresión</option>
+                      <option value="3">Regresión de Árbol Aleatorio</option>
+                      <option value="4">Red Neuronal</option>
+                    </select>
+                  </div>
                   <form id="ModalMetodo"></form>
                   <form class="mt-3" align="left">
                       <label class="font-weight-bold">Archivo</label>
@@ -187,6 +196,7 @@ export default {
       $("#ModalCargaImagen").modal();
       var position = this.Paginacion.findIndex(method => method.Name === this.titleMethod);
       var elements = "";
+      this.elemento = document.getElementById("AlgoritmoSeleccionado").value;
       elements += this.elemento;
 
       for (var x=1;x<(Object.keys(this.Paginacion[position].Elements).length);x++) { 

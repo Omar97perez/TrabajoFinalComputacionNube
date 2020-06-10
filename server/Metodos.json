@@ -88,7 +88,7 @@
             "Elements": [
                 {
                     "Name": "tipoGrafica",
-                    "value": "2",
+                    "value": "1",
                     "DescriptionShort": "Campo que nos permite elegir la gráfica deseada.",
                     "DescriptionLong": "Valores pueden ser { decision_tree_classification.json  decision_tree_regression.json  k_means.json  linear_regression.json  naive_bayes.json  random_forest.json  sparkpi.json } "
                 },

@@ -11,7 +11,7 @@
         </div>
 
         <div class="row mt-5">
-          <div class="card col-4" style="border: 1px solid #343a40!important">
+          <div class="card col-md-4 col-s-12" style="border: 1px solid #343a40!important">
             <img class="card-img-top" src="/img/futbol.jpeg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Previsión de fútbol</h5>

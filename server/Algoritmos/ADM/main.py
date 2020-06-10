@@ -92,5 +92,5 @@ if(pedirParametros == 1):
     print(result)
 else:
     json = '{"Resultado":'+ str(result[0]) +'}'
-    file = open(rutaEscribirJson + fichero[0] + ".json", "w")
+    file = open(rutaEscribirJson, "w")
     file.write(json)

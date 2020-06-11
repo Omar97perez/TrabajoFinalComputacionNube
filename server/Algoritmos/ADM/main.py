@@ -34,8 +34,8 @@ pedirParametros = int(sys.argv[2])
 #Cargamos los datos de un fichero
 file = sys.argv[1]
 fichero = os.path.splitext(file)
+nombreFichero = fichero[0]
 fichero = fichero[0] + ".csv"
-nombreFichero = ""
 
 if file.endswith('.csv'):
     fileSelected = sf.Csv(file, fichero)
@@ -83,14 +83,27 @@ valorSplit = valoresPredecir.split(",")
 valorMap = list(map(float, valorSplit))
 
 valoresPredecir = np.array([valorMap])
-# valorPredecir = np.array([[1,1,2010,1.00,12.00,5.00,31.00,56.00,0.4,2.00,3.00,2.00]])
 reg = model.fit(X, Y)
 result = reg.predict(valoresPredecir)
 
+validation_size = 0.22
+seed = 123
+X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
+kfold = model_selection.KFold(n_splits=10, random_state=seed, shuffle=True)
+cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold)
+msg = "%s (%f) \n %s (%f)" % ('Predicción:', result, 'Porcentaje de acierto:', cv_results.mean())
+
+model.fit(X_train, Y_train)
+predictions = model.predict(X_validation)
+
+fig = plt.figure()
+fig.suptitle(msg)
+ax = fig.add_subplot(111)
+plt.boxplot(cv_results)
+ax.set_xticklabels('BR')
+
 if(pedirParametros == 1):
-    print("Result: \n")
-    print(result)
+    plt.show()
 else:
-    json = '{"Resultado":'+ str(result[0]) +'}'
-    file = open(rutaEscribirJson, "w")
-    file.write(json)
+    print(nombreFichero)
+    plt.savefig(nombreFichero)

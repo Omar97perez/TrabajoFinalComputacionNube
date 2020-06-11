@@ -70,8 +70,7 @@
                       </button>
                   </div>
                   <div class="modal-body" align="center">
-                    <h2>Resultado:</h2>
-                    <p style="font-size:20px;" class="img-fluid mt-3" id="myimage"></p>
+                      <img class="img-fluid mt-3" id="myimage"/>
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-primary" id="prueba" rel="myimage" @click="DescargarImagen()">Descargar</button>
@@ -215,6 +214,7 @@ export default {
       var formData = new FormData();
       formData.append("file", document.getElementById("fileExecuteMethod").files[0]);
 
+
       $.ajax({
           url: urlPostMetodo,
           type: "POST",
@@ -226,11 +226,7 @@ export default {
               $('body').removeClass('modal-open');
               $('.modal-backdrop').remove();
               response = response.split(".");
-              fetch('http://localhost:3000/api/Get/file/' + response[0] + ".json")
-                .then(res => res.json())
-                .then(data => {
-                  document.getElementById('myimage').innerHTML =  data["Resultado"];
-                });
+              document.getElementById('myimage').src = 'http://localhost:3000/api/Get/file/' + response[0] + ".png";
               $('body').removeClass('ModalCargaImagen');
               $("#ModalVerImagen").modal();
           },

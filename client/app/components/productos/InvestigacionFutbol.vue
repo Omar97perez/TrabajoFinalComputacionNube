@@ -116,7 +116,7 @@
               <h5 class="card-title">Ejecutar previsión de fútbol</h5>
               <p class="card-text">Esta opción nos permite poder predecir el puesto que va a logarr un equipo sabiendo los 10 primeros partidos jugados.</p>
               <div class="card-footer mt-2" align="center" style="position: relative!important; border-top: 1px solid  #343a40!important;">
-                <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ADM', 'Estimar valor',2)">Acceder</button>
+                <button class="btn btn-dark" data-toggle="modal" data-target="#ModalEjecutarMetodo" @click="CargarFormulario('ADM2', 'Estimar valor',2)">Acceder</button>
               </div>
             </div>
           </div>

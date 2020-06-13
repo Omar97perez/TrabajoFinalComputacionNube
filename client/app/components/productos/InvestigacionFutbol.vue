@@ -104,6 +104,20 @@
           </p>
         </div>
 
+          <div class="mt-5 font-weight-bold" align="center">
+            <h1>Algoritmos de predicción para la investigación.</h1>
+          </div> 
+          <div class="mt-5" >
+            <p style="font-size:20px;">Para este apartado, se ha desarrollado cuatro algoritmos de regresión para predecir un dato expresado con anterioridad. De igual forma, se requiere un conjunto de datos para realizar dicha acción. A su vez, cabe resaltar, que se ha seguido el patrón de estratégia visto en el apartado 2.1. Los algoritmos implementados han sido:</p> 
+            <ul style="font-size:20px;">
+              <li>Regresión Lineal.</li>
+              <li>Árbol de decisión.</li>
+              <li>Árbol aleatorio.</li>
+              <li>Red neuronal.</li>
+            </ul>
+            <p style="font-size:20px;">Junto con estos algoritmos, se ha desarrollado un estudio sobre los datos que nos aporta el cliente para saber si la predicción es fiable. Para ello, cogeremos el 80% para entrenar y el 20 % restante para predecir. Esto nos valdrá para seleccionar qué algoritmo es más óptimo para nuestros datos.</p> 
+          </div>
+
         <div class="mt-5 font-weight-bold" align="center">
           <h1>Ejecución</h1>
         </div> 
@@ -133,8 +147,34 @@
               </div>
             </div>
           </div>
-
         </div>
+
+          <div class="mt-5 font-weight-bold" align="center">
+            <h1>Conclusiones obtenidas</h1>
+          </div> 
+          <div class="mt-5" >
+            <p style="font-size:20px;">En base a la ejecución de los algoritmos de predicción desarrollados para la previsión de la clasificación final de un equipo de fútbol, podemos concluir lo siguiente.</p> 
+            <ul style="font-size:20px;">
+              <li>De los cuatro algoritmos desarrollados (regresión lineal, árbol de decisión, regresión de árbol aleatorio y red neuronal) el algoritmo de regresión lineal predice con una mayor exactitud la clasificación final del equipo. Para el resto de algoritmos, se ha observado que la predicción que realiza se acerca al valor final de la clasificación, pero el valor de este oscila en un rango mayor que el resultado de la predicción final que el algoritmo mencionado. </li>
+              <li>Al introducir un número mayor de resultados de partidos (ganado, perdido, empate), el modelo obtiene una predicción que se acerca más a la clasificación final del equipo. </li>
+              <li>Otra cuestión que es interesante, es el caso de los equipos que son menos consistentes en sus resultados, es decir, si un equipo tiene una tendencia a ganar y empatar, la predicción final será más fiable que la de un equipo que empieza la temporada perdiendo y más adelante obtengan una racha de victorias. En estos casos, aunque la predicción final no sea exacta, se obtiene una predicción que puede dar una idea de donde caerá el equipo en la clasificación final.</li>
+            </ul>
+          </div>
+          <div class="mt-5 font-weight-bold" align="center">
+            <h1>Líneas futuras</h1>
+          </div> 
+          <div class="mt-5" >
+            <p style="font-size:20px;">El modelo desarrollado tienes varios aspectos que se pueden mejorar. Estos los podremos ver a continuación:</p> 
+            <ul style="font-size:20px;">
+              <li>Actualmente, se mantienen simplemente los resultados de los partidos de cada uno de los equipo a lo largo de las temporadas, por lo tanto, el modelo se realiza en base a los resultados de los partidos. Una idea que ha surgido es la de almacenar una mayor cantidad de información con respecto a los partidos disputados (goles en contra, goles a favor,...).</li>
+              <li>Agregar más algoritmos de regresión. Con esto, podremos conseguir encontrar un algoritmo que funcione mejor que la regresión Lineal (dependiendo del tipo de resultados obtenidos).</li>
+              <li>Tener en cuenta la progresión del equipo durante los últimos años. Así nos permitiría poder adecuar el ejercicio no solo basándonos en los resultados actuales, sino que, también nos podríamos basar en los últimos años, es decir, teniendo en cuenta de alguna manera a los jugadores del equipo.</li>
+              <li>Agregar resultados realizados durante la pretemporada. Con esto podríamos saber con que nivel llega un equipo a la liga y, así poder mejorar la previsión.</li>
+              <li>Agregar los resultados de Copa del Rey y Champions o Europa League. Así, podríamos sacar información del rendimiento en estas competiciones y, si estas repercuten en el rendimiento del equipo en la liga.</li>
+              <li>Tener en cuenta el rendimiento de los jugadores en cada equipo. Con esto se permitiría tener una mayor exactitud a la hora de predecir clasificaciones finales sin tener una gran cantidad de resultados de partidos entrantes.</li>
+            </ul>
+            <p style="font-size:20px;">Como podemos ver, todas estas mejoras podrían conceder un mejor resultado en nuestra previsión. No obstante, tendríamos que realizar previamente un estudio porque no siempre tener más información ocasiona un mejor resultado.</p> 
+          </div>
       </div>
     </section>
   </div>

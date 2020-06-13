@@ -17,7 +17,7 @@ spec:
       containers:
       - name: backend
         image: pierresimt/backend-cn-gke
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
         readinessProbe:
